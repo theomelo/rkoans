@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     rkoans (0.0.1)
+      minitest (~> 5.16)
 
 GEM
   remote: https://rubygems.org/
@@ -75,7 +76,6 @@ PLATFORMS
 
 DEPENDENCIES
   irb
-  minitest (~> 5.16)
   rake (~> 13.0)
   rkoans!
   rubocop (~> 1.21)

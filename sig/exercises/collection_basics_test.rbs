@@ -1,0 +1,4 @@
+class CollectionBasicsTest
+  def test_collection_koans: -> void
+  def test_double_odds: -> void
+end

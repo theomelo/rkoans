@@ -1,0 +1,9 @@
+class CheckerTest
+  class TimeoutExercise < Rkoans::Exercise
+    @checks: String
+    attr_reader checks: String
+    def initialize: (directory: String, checks: String) -> void
+  end
+
+  def test_timeout_stops_the_check_and_its_child_process: -> void
+end

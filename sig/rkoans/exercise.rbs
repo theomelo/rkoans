@@ -1,0 +1,13 @@
+module Rkoans
+  class Exercise
+    @solution: String
+    @source: String
+
+    attr_reader solution: String
+
+    def initialize: (?directory: String) -> void
+    def prepare: -> Integer?
+    def instructions: -> String
+    def checks: -> String
+  end
+end

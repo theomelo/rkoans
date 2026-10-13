@@ -1,0 +1,22 @@
+module Rkoans
+  class Checker
+    class Result < Data
+      attr_reader output: String
+      attr_reader exit_code: Integer
+
+      def self.new: (String output, Integer exit_code) -> Result
+                  | (output: String, exit_code: Integer) -> Result
+    end
+
+    MAX_KB: Integer
+    @timeout: Integer | Float
+
+    def initialize: (?timeout: Integer | Float) -> void
+    def run: (Exercise exercise) -> Result
+
+    private
+
+    def stop_group: (pid: Integer) -> Integer?
+    def reap_exited_child: (Integer pid) -> Integer?
+  end
+end

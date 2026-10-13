@@ -1,0 +1,19 @@
+class CommandTest
+  interface _Stream
+    def readline: -> String
+  end
+
+  ROOT: String
+  COMMAND: Array[String]
+  FIXED: String
+
+  def test_check_reports_failure_then_success_from_another_directory: -> void
+  def test_default_start_watches_atomic_saves_and_preserves_edits_on_restart: -> void
+
+  private
+
+  def solution: (String directory) -> String
+  def run_command: (*String command_name, directory: String) -> [String, Process::Status]
+  def with_watcher: (*String message, directory: String) { (_Stream) -> untyped } -> untyped
+  def wait_for: (_Stream stream, String text) -> String
+end

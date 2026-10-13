@@ -1,0 +1,15 @@
+module Rkoans
+  class Watcher
+    @path: String
+    @interval: Float
+    @debounce: Float
+
+    def initialize: (String path, ?interval: Float, ?debounce: Float) -> void
+    def run: () { () -> untyped } -> bot
+
+    private
+
+    def fingerprint: -> String?
+    def monotonic_time: -> Float
+  end
+end

@@ -1,0 +1,3 @@
+class WatcherTest
+  def test_save_burst_is_debounced_and_unchanged_contents_do_not_rerun: -> void
+end

@@ -1,0 +1,6 @@
+module Exercises
+  class Starter
+    def self.koans: -> { mapped: Array[Integer]?, selected: Array[Integer]? }
+    def self.double_odds: (Array[Integer]) -> Array[Integer]
+  end
+end

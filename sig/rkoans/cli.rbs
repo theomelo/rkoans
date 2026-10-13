@@ -1,0 +1,21 @@
+module Rkoans
+  class CLI
+    @err: IO
+    @out: IO
+    @exercise: Exercise
+    @checker: Checker
+
+    def initialize: (?out: IO, ?err: IO, ?directory: String) -> void
+    def run: (Array[String] arguments) -> Integer
+
+    private
+
+    def start: -> bot
+    def check: -> Integer
+    def help: -> Integer
+    def show_checks: (watching: bool) -> Integer
+    def colorize: (String text, Integer code) -> String
+    def status_text: (Integer exit_code) -> String
+    def usage_error: -> Integer
+  end
+end
