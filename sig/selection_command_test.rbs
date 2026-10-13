@@ -1,0 +1,5 @@
+class SelectionCommandTest
+  include CommandSupport
+  def test_second_exercise_is_listed_and_selection_resumes_without_losing_first_edits: -> void
+  def test_unknown_exercise_is_rejected_without_creating_a_workspace: -> void
+end

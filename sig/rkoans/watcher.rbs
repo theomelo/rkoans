@@ -3,13 +3,16 @@ module Rkoans
     @path: String
     @interval: Float
     @debounce: Float
+    @previous: String?
+    @changed_at: Float?
 
     def initialize: (String path, ?interval: Float, ?debounce: Float) -> void
-    def run: () { () -> untyped } -> bot
+    def run: (?input: IO?) { (String?) -> untyped } -> bot
 
     private
 
     def fingerprint: -> String?
+    def changed?: -> bool
     def monotonic_time: -> Float
   end
 end

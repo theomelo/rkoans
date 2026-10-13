@@ -21,7 +21,7 @@ module Rkoans
       Tempfile.create('rkoans-check') do |output|
         pid = Process.spawn(
           RbConfig.ruby, '-rminitest/autorun', exercise.checks, exercise.solution,
-          out: output, err: output, pgroup: true
+          in: File::NULL, out: output, err: output, pgroup: true
         )
         begin
           status = Timeout.timeout(@timeout) { Process.wait2(pid).last }

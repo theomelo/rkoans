@@ -1,0 +1,30 @@
+module Rkoans
+  class Session
+    @directory: String
+    @out: IO
+    @input: IO
+    @selection: Selection
+    @checker: Checker
+    @progress: Progress
+    @view: TerminalView
+    @exercise: Exercise
+    @passed: bool
+    @listing: bool
+
+    def initialize: (directory: String, out: IO, input: IO) -> void
+    def start: (String? id) -> Integer
+    def check: -> Integer
+
+    private
+
+    def activate: (String id) -> void
+    def watch: -> (String | :quit)
+    def handle_command: (String command) -> void
+    def advance: -> void
+    def show_checks: (watching: bool) -> Integer
+    def check_result: -> Checker::Result
+    def render: (Checker::Result result, watching: bool, ?message: String?) -> Integer
+    def show_message: (String message, ?watching: bool) -> void
+    def show_hint: -> void
+  end
+end

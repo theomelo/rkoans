@@ -1,0 +1,17 @@
+module CommandSupport
+  interface _Stream
+    def readline: -> String
+  end
+
+  ROOT: String
+  COMMAND: Array[String]
+
+  private
+
+  def reference_source: (?String id) -> String
+
+  def solution: (String directory) -> String
+  def run_command: (*String command_name, directory: String) -> [String, Process::Status]
+  def with_watcher: (*String message, directory: String) { (_Stream) -> untyped } -> untyped
+  def wait_for: (_Stream stream, String text) -> String
+end
