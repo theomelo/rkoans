@@ -15,24 +15,33 @@ module Rkoans
     end
 
     # Calls the block initially and after saves, until interrupted.
-    def run
-      previous = fingerprint
-      changed_at = nil
-      yield
-      loop do
-        sleep @interval
-        current = fingerprint
-        if current != previous
-          previous = current
-          changed_at = monotonic_time
-        elsif changed_at && monotonic_time - changed_at >= @debounce
-          changed_at = nil
-          yield
+    def run(input: nil)
+      keyboard = Keyboard.new(input: input)
+      @previous = fingerprint
+      @changed_at = nil
+      keyboard.with_terminal do
+        yield nil
+        loop do
+          command = keyboard.read(@interval)
+          yield command if command
+          yield nil if changed?
         end
       end
     end
 
     private
+
+    def changed?
+      current = fingerprint
+      if current != @previous
+        @previous = current
+        @changed_at = monotonic_time
+      elsif @changed_at && monotonic_time - @changed_at >= @debounce
+        @changed_at = nil
+        return true
+      end
+      false
+    end
 
     # @return [String, nil]
     def fingerprint

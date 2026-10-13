@@ -2,7 +2,7 @@
 
 module Exercises
   # Fill the expectations and implement the collection operation below.
-  class Starter
+  class CollectionBasics
     def self.koans
       { mapped: nil, selected: nil }
     end

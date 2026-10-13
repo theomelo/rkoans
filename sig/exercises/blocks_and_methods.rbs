@@ -1,0 +1,11 @@
+module Exercises
+  class BlocksAndMethods
+    def self.koans: -> { sequence: Array[Integer]? }
+    def self.apply: [T] (Integer value) { (Integer) -> T } -> T
+  end
+end
+
+class BlocksAndMethodsTest
+  def test_block_koan: -> void
+  def test_apply_block: -> void
+end

@@ -1,0 +1,9 @@
+class KeyboardSessionTest
+  include CommandSupport
+  def test_list_and_show_are_immediate_but_next_and_quit_require_enter: -> void
+
+  private
+
+  def confirm_next_and_quit: (IO input, IO output, Integer pid, String directory) -> void
+  def stop_child: (Integer pid) -> void
+end

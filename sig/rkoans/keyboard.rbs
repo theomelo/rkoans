@@ -1,0 +1,13 @@
+module Rkoans
+  class Keyboard
+    @input: IO?
+    @pending: String?
+    def initialize: (input: IO?) -> void
+    def with_terminal: [T] () { () -> T } -> T
+    def read: (Float interval) -> String?
+
+    private
+
+    def decode: (String key) -> String?
+  end
+end

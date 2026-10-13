@@ -1,0 +1,8 @@
+class HelpHintCommandTest
+  include CommandSupport
+  def test_help_is_always_available_and_hints_are_limited_to_unfinished_current_exercises: -> void
+
+  private
+
+  def with_session: (String directory) { (IO input, IO output) -> untyped } -> untyped
+end

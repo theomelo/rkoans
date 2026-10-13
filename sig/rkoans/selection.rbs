@@ -1,0 +1,8 @@
+module Rkoans
+  class Selection
+    @path: String
+    def initialize: (directory: String) -> void
+    def read: -> String
+    def write: (String id) -> Integer
+  end
+end

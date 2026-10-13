@@ -1,0 +1,3 @@
+class ExerciseTest
+  def test_start_preserves_existing_class_named_files: -> void
+end

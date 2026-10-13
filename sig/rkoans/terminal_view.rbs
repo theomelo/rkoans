@@ -1,0 +1,23 @@
+module Rkoans
+  class TerminalView
+    HELP: String
+    @out: IO
+    def initialize: (out: IO) -> void
+    def render: (exercise: Exercise, result: Checker::Result, completed: Array[String], watching: bool,
+                 ?message: String?) -> void
+    def show_message: (String message, exercise: Exercise, completed: Array[String], passed: bool,
+                       ?mode: (:current | :list | :quit)) -> void
+    def show_list: (exercise: Exercise, completed: Array[String], passed: bool) -> void
+    def footer: (Exercise exercise, Array[String] completed, bool passed, ?listing: bool) -> void
+
+    private
+
+    def clear: -> void
+
+    def show_completed: (Exercise exercise) -> void
+    def show_checks: (Exercise exercise, Checker::Result result) -> void
+    def colorize: (String text, Integer code) -> String
+    def progress_line: (Integer count) -> String
+    def commands: (bool passed, listing: bool) -> String
+  end
+end

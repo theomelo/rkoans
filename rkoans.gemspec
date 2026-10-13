@@ -20,8 +20,13 @@ Gem::Specification.new do |s|
   s.metadata['rubygems_mfa_required'] = 'true'
 
   s.files = Dir.chdir(__dir__) do
-    Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'exercises/*/{brief.md,starter.rb}',
-        'test/exercises/*_test.rb', '*.md', 'LICENSE.txt'].select do |file|
+    exercise_files = Dir['exercises/*/brief.md'].flat_map do |brief|
+      folder = File.dirname(brief)
+      [brief, "#{folder}/hint.md", "#{folder}/#{File.basename(folder).tr('-', '_')}.rb"]
+    end
+    (Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'test/exercises/*_test.rb', 'solutions/**/*.rb', '*.md',
+         'LICENSE.txt'] +
+      exercise_files).select do |file|
       File.file?(file)
     end
   end
