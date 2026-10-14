@@ -1,0 +1,23 @@
+module Exercises
+  class RuntimeContext
+    type context = {
+      arguments: Array[String],
+      greeting: String?,
+      program: String,
+      file: String,
+      encoding: String,
+      ruby: String
+    }
+    def self.context: -> context
+  end
+end
+
+class RuntimeContextTest
+  @arguments: Array[String]
+  @greeting: String?
+  def setup: -> void
+  def teardown: -> void
+  def test_runtime_globals: -> void
+  def test_runtime_constants: -> void
+  def test_empty_arguments_and_missing_greeting: -> void
+end
