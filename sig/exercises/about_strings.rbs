@@ -1,0 +1,85 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutStrings
+    type answers = {
+      double_quoted_string: bool?,
+      single_quoted_string: bool?,
+      quoted_speech: String?,
+      apostrophe: String?,
+      escaped_quotes_equal: bool?,
+      flexible_percent_equal: bool?,
+      flexible_braces_equal: bool?,
+      multiline_length: Integer?,
+      multiline_lines: Integer?,
+      multiline_first_character: String?,
+      heredoc_length: Integer?,
+      heredoc_lines: Integer?,
+      heredoc_first_character: String?,
+      concatenated: String?,
+      plus_original: String?,
+      plus_other: String?,
+      plus_equals_result: String?,
+      plus_equals_original: String?,
+      append_result: String?,
+      append_other: String?,
+      appended_original: String?,
+      double_escape_length: Integer?,
+      single_escape_length: Integer?,
+      quote_escape_length: Integer?,
+      quote_escape_text: String?,
+      interpolated: String?,
+      not_interpolated: String?,
+      math_interpolation: String?,
+      substring_slice: String?,
+      substring_range: String?,
+      single_character: String?,
+      character_literal: String?,
+      character_equals_integer: bool?,
+      split_words: Array[String]?,
+      pattern_words: Array[String]?,
+      joined_words: String?,
+      equal_strings: bool?,
+      same_object: bool?
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutStringsQuotingTest
+  def test_double_quoted_strings_are_strings: -> void
+  def test_single_quoted_strings_are_also_strings: -> void
+  def test_use_single_quotes_to_create_string_with_double_quotes: -> void
+  def test_use_double_quotes_to_create_strings_with_single_quotes: -> void
+  def test_use_backslash_for_those_hard_cases: -> void
+  def test_use_flexible_quoting_to_handle_really_hard_cases: -> void
+  def test_flexible_quotes_can_handle_multiple_lines: -> void
+  def test_here_documents_can_also_handle_multiple_lines: -> void
+end
+
+class AboutStringsMutationTest
+  def test_plus_will_concatenate_two_strings: -> void
+  def test_plus_concatenation_will_leave_the_original_strings_unmodified: -> void
+  def test_plus_equals_will_concatenate_to_the_end_of_a_string: -> void
+  def test_plus_equals_also_will_leave_the_original_string_unmodified: -> void
+  def test_the_shovel_operator_will_also_append_content_to_a_string: -> void
+  def test_the_shovel_operator_modifies_the_original_string: -> void
+end
+
+class AboutStringsValuesTest
+  def test_double_quoted_string_interpret_escape_characters: -> void
+  def test_single_quoted_string_do_not_interpret_escape_characters: -> void
+  def test_single_quotes_sometimes_interpret_escape_characters: -> void
+  def test_double_quoted_strings_interpolate_variables: -> void
+  def test_single_quoted_strings_do_not_interpolate: -> void
+  def test_any_ruby_expression_may_be_interpolated: -> void
+  def test_you_can_get_a_substring_from_a_string: -> void
+  def test_you_can_get_a_single_character_from_a_string: -> void
+  def test_in_modern_ruby_single_characters_are_represented_by_strings: -> void
+  def test_strings_can_be_split: -> void
+  def test_strings_can_be_split_with_different_patterns: -> void
+  def test_strings_can_be_joined: -> void
+  def test_strings_are_unique_objects: -> void
+end

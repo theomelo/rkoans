@@ -1,0 +1,3 @@
+class AboutStringsAcceptanceTest
+  def test_incorrect_mutation_and_identity_predictions_are_rejected: -> void
+end
