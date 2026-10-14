@@ -1,0 +1,3 @@
+class AboutArrayAssignmentAcceptanceTest
+  def test_incorrect_splat_and_missing_value_predictions_are_rejected: -> void
+end

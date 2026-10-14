@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutArrayAssignment
+    type answers = {
+      names: (Array[String] | :fill_me_in),
+      first_name: (String | :fill_me_in),
+      last_name: (String | :fill_me_in),
+      extra_first: (String | :fill_me_in),
+      extra_last: (String | :fill_me_in),
+      splat_first: (String | :fill_me_in),
+      splat_last: (Array[String] | :fill_me_in),
+      short_first: (String | :fill_me_in),
+      short_last: (nil | :fill_me_in),
+      nested_first: (Array[String] | :fill_me_in),
+      nested_last: (String | :fill_me_in),
+      single_first: (String | :fill_me_in),
+      swapped_first: (String | :fill_me_in),
+      swapped_last: (String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutArrayAssignmentTest
+  def test_non_parallel_assignment: -> void
+  def test_parallel_assignments: -> void
+  def test_parallel_assignments_with_extra_values: -> void
+  def test_parallel_assignments_with_splat_operator: -> void
+  def test_parallel_assignments_with_too_few_values: -> void
+  def test_parallel_assignments_with_subarrays: -> void
+  def test_parallel_assignment_with_one_variable: -> void
+  def test_swapping_with_parallel_assignment: -> void
+end
