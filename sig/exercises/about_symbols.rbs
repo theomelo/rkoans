@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutSymbols
+    type answers = {
+      symbol_type: (bool | :fill_me_in),
+      same_value: (bool | :fill_me_in),
+      different_value: (bool | :fill_me_in),
+      identical_value: (bool | :fill_me_in),
+      same_object: (bool | :fill_me_in),
+      method_name_registered: (bool | :fill_me_in),
+      constant_name: (String | :fill_me_in),
+      constant_registered: (bool | :fill_me_in),
+      from_string: Symbol,
+      with_spaces: Symbol,
+      with_interpolation: Symbol,
+      interpolated_text: (String | :fill_me_in),
+      string_type: (bool | :fill_me_in),
+      equals_string: (bool | :fill_me_in),
+      each_char: (bool | :fill_me_in),
+      reverse: (bool | :fill_me_in),
+      concatenation_error: (singleton(NoMethodError) | :fill_me_in),
+      dynamically_created: Symbol
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutSymbolsTest
+  RUBY_CONSTANT: String
+  def test_symbols_are_symbols: -> void
+  def test_symbols_can_be_compared: -> void
+  def test_identical_symbols_are_a_single_internal_object: -> void
+  def test_method_names_become_symbols: -> void
+  def test_constants_become_symbols: -> void
+  def test_symbols_can_be_made_from_strings: -> void
+  def test_symbols_with_spaces_can_be_built: -> void
+  def test_symbols_with_interpolation_can_be_built: -> void
+  def test_to_s_is_called_on_interpolated_symbols: -> void
+  def test_symbols_are_not_strings: -> void
+  def test_symbols_do_not_have_string_methods: -> void
+  def test_symbols_cannot_be_concatenated: -> void
+  def test_symbols_can_be_dynamically_created: -> void
+end
