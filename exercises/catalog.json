@@ -4,6 +4,7 @@
   "about-strings",
   "heredoc-layout",
   "about-symbols",
+  "about-arrays",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"
