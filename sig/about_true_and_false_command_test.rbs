@@ -1,0 +1,4 @@
+class AboutTrueAndFalseCommandTest
+  include CommandSupport
+  def test_truth_values_reject_partial_answers_and_accept_reference: -> void
+end
