@@ -1,3 +1,6 @@
+require:
+  - ./tools/rubocop/curriculum.rb
+
 plugins:
   - rubocop-minitest
   - rubocop-rake
@@ -24,3 +27,8 @@ Metrics/AbcSize:
 Minitest/MultipleAssertions:
   Exclude:
     - 'test/**/*'
+
+Rkoans/Curriculum:
+  Enabled: true
+  Include:
+    - 'rkoans.gemspec'

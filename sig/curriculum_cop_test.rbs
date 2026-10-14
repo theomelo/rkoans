@@ -1,0 +1,6 @@
+class CurriculumCopTest
+  def test_complete_curriculum_and_missing_asset_diagnostics: -> void
+  def test_invalid_catalog_is_reported_as_an_offense: -> void
+  private
+  def offenses: (String directory) -> Array[String]
+end

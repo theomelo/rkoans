@@ -1,0 +1,18 @@
+module RuboCop
+  module Cop
+    class Base
+    end
+    module Rkoans
+      class Curriculum < Base
+        def on_new_investigation: -> void
+        def external_dependency_checksum: -> String
+        private
+        def check_assets: (String root, Array[String] ids) -> void
+        def check_registration: (String root, Array[String] ids) -> void
+        def valid_ids?: (Object ids) -> bool
+        def assets: (String id) -> Array[String]
+        def report: (String message) -> void
+      end
+    end
+  end
+end
