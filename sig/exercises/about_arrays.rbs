@@ -1,0 +1,51 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutArrays
+    type answers = {
+      empty_type: (singleton(Array) | :fill_me_in),
+      empty_size: (Integer | :fill_me_in),
+      second_literal: (Integer | :fill_me_in),
+      after_append: (Array[Integer] | :fill_me_in),
+      first_index: Symbol,
+      first_method: Symbol,
+      last_index: Symbol,
+      last_method: Symbol,
+      negative_last: Symbol,
+      negative_third: Symbol,
+      slice_one: (Array[Symbol] | :fill_me_in),
+      slice_two: (Array[Symbol] | :fill_me_in),
+      slice_tail: (Array[Symbol] | :fill_me_in),
+      slice_long_tail: (Array[Symbol] | :fill_me_in),
+      slice_at_end_zero: (Array[Symbol] | :fill_me_in),
+      slice_at_end_long: (Array[Symbol] | :fill_me_in),
+      slice_beyond_end: (nil | :fill_me_in),
+      range_type: (singleton(Range) | :fill_me_in),
+      inclusive_range: (Array[Integer] | :fill_me_in),
+      exclusive_range: (Array[Integer] | :fill_me_in),
+      inclusive_slice: (Array[Symbol] | :fill_me_in),
+      exclusive_slice: (Array[Symbol] | :fill_me_in),
+      negative_range_slice: (Array[Symbol] | :fill_me_in),
+      after_push: (Array[Integer | Symbol] | :fill_me_in),
+      popped_value: Symbol,
+      after_pop: (Array[Integer] | :fill_me_in),
+      after_unshift: (Array[Integer | Symbol] | :fill_me_in),
+      shifted_value: Symbol,
+      after_shift: (Array[Integer] | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutArraysTest
+  def test_creating_arrays: -> void
+  def test_array_literals: -> void
+  def test_accessing_array_elements: -> void
+  def test_slicing_arrays: -> void
+  def test_arrays_and_ranges: -> void
+  def test_slicing_with_ranges: -> void
+  def test_pushing_and_popping_arrays: -> void
+  def test_shifting_arrays: -> void
+end

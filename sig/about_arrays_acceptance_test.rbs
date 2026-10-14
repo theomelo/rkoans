@@ -1,0 +1,3 @@
+class AboutArraysAcceptanceTest
+  def test_incorrect_slice_and_pop_predictions_are_rejected: -> void
+end
