@@ -1,0 +1,3 @@
+class SharedRowsAcceptanceTest
+  def test_shared_and_cached_rows_are_rejected: -> void
+end

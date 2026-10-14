@@ -1,0 +1,11 @@
+module Exercises
+  class SharedRows
+    def self.rows: (Integer count) -> Array[Array[untyped]]
+  end
+end
+
+class SharedRowsTest
+  def test_independent_rows: -> void
+  def test_empty_rows: -> void
+  def test_fresh_rows_on_each_call: -> void
+end
