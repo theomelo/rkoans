@@ -1,0 +1,27 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+module Exercises
+  class AboutTrueAndFalse
+    type answers = {
+      true_value: (:true_stuff | :false_stuff)?,
+      false_value: (:true_stuff | :false_stuff)?,
+      nil_value: (:true_stuff | :false_stuff)?,
+      one: (:true_stuff | :false_stuff)?,
+      zero: (:true_stuff | :false_stuff)?,
+      empty_array: (:true_stuff | :false_stuff)?,
+      empty_hash: (:true_stuff | :false_stuff)?,
+      string: (:true_stuff | :false_stuff)?,
+      empty_string: (:true_stuff | :false_stuff)?
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutTrueAndFalseTest
+  def truth_value: (Object condition) -> (:true_stuff | :false_stuff)
+  def test_true_is_treated_as_true: -> void
+  def test_false_is_treated_as_false: -> void
+  def test_nil_is_treated_as_false_too: -> void
+  def test_everything_else_is_treated_as_true: -> void
+end
