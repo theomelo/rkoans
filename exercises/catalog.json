@@ -5,6 +5,7 @@
   "heredoc-layout",
   "about-symbols",
   "about-arrays",
+  "about-array-assignment",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"
