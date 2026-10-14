@@ -1,0 +1,3 @@
+class AboutNilAcceptanceTest
+  def test_incorrect_error_and_empty_message_predictions_are_rejected: -> void
+end
