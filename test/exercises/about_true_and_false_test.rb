@@ -20,17 +20,17 @@ class AboutTrueAndFalseTest < Minitest::Test
 
   # True selects the truthy branch.
   def test_true_is_treated_as_true
-    assert_equal truth_value(true), Exercises::AboutTrueAndFalse.koans[:true_value]
+    assert_equal Exercises::AboutTrueAndFalse.koans[:true_value], truth_value(true)
   end
 
   # False selects the falsey branch.
   def test_false_is_treated_as_false
-    assert_equal truth_value(false), Exercises::AboutTrueAndFalse.koans[:false_value]
+    assert_equal Exercises::AboutTrueAndFalse.koans[:false_value], truth_value(false)
   end
 
   # Nil selects the same branch as false.
   def test_nil_is_treated_as_false_too
-    assert_equal truth_value(nil), Exercises::AboutTrueAndFalse.koans[:nil_value]
+    assert_equal Exercises::AboutTrueAndFalse.koans[:nil_value], truth_value(nil)
   end
 
   # Zero and empty containers are truthy, just like other ordinary objects.
@@ -38,6 +38,6 @@ class AboutTrueAndFalseTest < Minitest::Test
     values = { one: 1, zero: 0, empty_array: [], empty_hash: {}, string: 'Strings', empty_string: '' }
     answers = Exercises::AboutTrueAndFalse.koans
 
-    values.each { |key, value| assert_equal truth_value(value), answers[key], "Branch for #{key}" }
+    values.each { |key, value| assert_equal answers[key], truth_value(value), "Branch for #{key}" }
   end
 end

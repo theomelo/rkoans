@@ -7,6 +7,7 @@
 module Exercises
   # Predicts the branch taken by Ruby's conditionals for common values.
   class AboutTrueAndFalse
+    # Replace each nil with :true_stuff or :false_stuff.
     # @return [Hash<Symbol, Symbol | nil>] expected branch labels for each input
     def self.koans
       {

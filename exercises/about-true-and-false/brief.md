@@ -13,7 +13,7 @@ end
 Fill each answer in `koans` with `:true_stuff` or `:false_stuff`, predicting the
 branch for `true`, `false`, `nil`, `1`, `0`, `[]`, `{}`, `"Strings"`, and `""`.
 The answer names match these inputs in order. The colon creates a symbol, which
-we use here as a branch label; symbols get their own lesson later.
+we use here as a branch label.
 
 Pay particular attention to zero and empty collections. Do they behave like
 false? Save one prediction at a time and read the failing check's message.

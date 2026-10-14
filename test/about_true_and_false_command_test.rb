@@ -24,6 +24,8 @@ class AboutTrueAndFalseCommandTest < Minitest::Test
       assert_equal 1, status.exitstatus
       assert_includes output, 'test_everything_else_is_treated_as_true'
       assert_includes output, '1 failures'
+      assert_includes output, 'Expected: :false_stuff'
+      assert_includes output, 'Actual: :true_stuff'
       File.write(path, source)
       output, status = run_command('check', directory: directory)
 
