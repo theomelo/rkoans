@@ -1,0 +1,4 @@
+class AboutAssertsCommandTest
+  include CommandSupport
+  def test_default_start_introduces_assertions_and_checks_each_answer: -> void
+end

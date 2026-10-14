@@ -1,0 +1,1 @@
+Set FIRST_EXERCISE_COMPLETE to true.

@@ -1,0 +1,11 @@
+module FixtureSupport
+  include CommandSupport
+  FIXTURE_ROOT: String
+  FIXTURE_COMMAND: Array[String]
+
+  private
+
+  def command: -> Array[String]
+  def reference_source: (?String id) -> String
+  def solution: (String directory) -> String
+end

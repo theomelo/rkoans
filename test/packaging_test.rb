@@ -20,17 +20,16 @@ class PackagingTest < Minitest::Test
       assert_predicate status, :success?, errors
       files = JSON.parse(output)
 
+      assert_includes files, 'exercises/catalog.json'
       assert_includes files, 'sig/rkoans/checker.rbs'
       assert_includes files, 'test/exercises/collection_basics_test.rb'
-      assert_includes files, 'test/exercises/blocks_and_methods_test.rb'
-      assert_includes files, 'exercises/blocks-and-methods/blocks_and_methods.rb'
-      assert_includes files, 'sig/exercises/blocks_and_methods.rbs'
-      assert_includes files, 'solutions/collection-basics/collection_basics.rb'
-      assert_includes files, 'solutions/blocks-and-methods/blocks_and_methods.rb'
+      assert_includes files, 'exercises/collection-basics/collection_basics.rb'
+      assert_includes files, 'exercises/collection-basics/brief.md'
       assert_includes files, 'exercises/collection-basics/hint.md'
-      assert_includes files, 'exercises/blocks-and-methods/hint.md'
+      assert_includes files, 'solutions/collection-basics/collection_basics.rb'
       refute_includes files, 'exercises/collection-basics/notes.rb'
       refute_includes files, 'test/command_test.rb'
+      refute_includes files, 'sig/rubocop/curriculum.rbs'
     end
   end
 end

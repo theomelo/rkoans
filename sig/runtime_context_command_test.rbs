@@ -1,0 +1,4 @@
+class RuntimeContextCommandTest
+  include CommandSupport
+  def test_runtime_context_can_be_selected_and_completed: -> void
+end

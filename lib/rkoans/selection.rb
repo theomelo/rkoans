@@ -6,14 +6,16 @@ require 'tempfile'
 module Rkoans
   # Remembers the active exercise without changing any learner files.
   class Selection
-    def initialize(directory:)
+    # @param catalog [Catalog] ordered exercises used by this component
+    def initialize(directory:, catalog: Catalog.new)
+      @catalog = catalog
       @path = File.join(directory, '.rkoans', 'selection')
     end
 
     def read
       File.read(@path).strip
     rescue Errno::ENOENT
-      Exercise::IDS.first
+      @catalog.ids.first
     end
 
     def write(id)

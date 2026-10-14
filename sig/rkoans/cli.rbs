@@ -2,13 +2,18 @@ module Rkoans
   class CLI
     @err: IO
     @out: IO
-    @session: Session
+    @session: Session?
+    @directory: String
+    @input: IO
 
-    def initialize: (?out: IO, ?err: IO, ?input: IO, ?directory: String) -> void
+    @catalog: Catalog?
+    def initialize: (?out: IO, ?err: IO, ?input: IO, ?directory: String, ?catalog: Catalog?) -> void
     def run: (Array[String] arguments) -> Integer
 
     private
 
+    def catalog: -> Catalog
+    def session: -> Session
     def dispatch: (String command, String? id) -> Integer
     def help: -> Integer
     def usage_error: -> Integer

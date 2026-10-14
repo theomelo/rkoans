@@ -1,67 +1,67 @@
 # Rkoans
 
 Learn Ruby by editing code and watching Minitest checks respond to each save.
-The migrated exercises are `collection-basics` and `blocks-and-methods`.
 
-## Try it from this repository
+## Get started
 
-Use mise to select Ruby 4.0.7, then run these commands from `gem/rkoans`:
-
-```sh
-mise install
-mise exec -- bundle install
-mise exec -- bundle exec rkoans
-```
-
-The command prints the exercise instructions and the path to edit:
-`~/ruby-koans/exercises/collection-basics/collection_basics.rb`. The starter intentionally fails.
-Save your changes to rerun the checks. The terminal refreshes after each run;
-Ctrl-C exits and preserves your edits. Running `rkoans` again resumes that file.
-
-`rkoans start` has the same behavior. `rkoans check` runs the checks once and
-exits with 0 for success, 1 for failed checks, or 2 for a command/setup error.
-Checks that run longer than 30 seconds are stopped.
-
-Use `rkoans list` to see the available exercise IDs. To select the second exercise:
+Rkoans requires Ruby 4.0.7 or newer. From a source checkout, run:
 
 ```sh
-rkoans start blocks-and-methods
+bundle install
+bundle exec rkoans
 ```
 
-Each exercise has its own file named after its class:
-`~/ruby-koans/exercises/collection-basics/collection_basics.rb` or
-`~/ruby-koans/exercises/blocks-and-methods/blocks_and_methods.rb`.
-Selection is saved in `~/ruby-koans/.rkoans/selection`. Running `rkoans`,
-`rkoans start`, or `rkoans check` again uses that selection. Switching exercises
-preserves your previous edits. A new study directory starts with `collection-basics`.
+Rkoans creates your study directory at `~/ruby-koans`, shows the exercise
+instructions, and prints the file to edit. The starter intentionally fails.
+Save your changes to rerun the checks automatically.
 
-After passing, the session shows `Exercise done ✓`, a packaged reference solution
-path, and your progress. It keeps the current exercise open so you can experiment.
-Press `l` to list exercises or `s` to show the current exercise immediately.
-Use `n` followed by Enter to advance, or `q` followed by Enter to quit.
-The list view shows `s`, `n`, and `q`; saving while in that view keeps the list open.
-`?` is available in every interactive view and shows keyboard help immediately.
-`h` shows a hint immediately while working on an unfinished current exercise;
-it is hidden in the list and on the completed screen.
-Ctrl-C also exits. Advancing reruns the current checks before moving on.
-The last exercise stays open with an all-complete message when you enter `n`.
+Running `rkoans` again resumes your selected exercise and preserves your edits.
+Once the gem is installed, you can run it from any directory.
+`rkoans start` has the same behavior as `rkoans`.
 
-Completion history is saved in `~/ruby-koans/.rkoans/completed.json`.
-Restarting resumes the selected exercise even when it has been completed.
-Experimenting with a completed exercise does not remove its completion history,
-but its current checks must pass before you advance.
+## Commands
 
-The command automatically creates `~/ruby-koans` for your learner files.
-Start and check use this same study directory regardless of where you run them.
-The gem includes its own starter and checks and does not need the parent project.
-For an installed gem, simply run `rkoans` from any directory.
+```sh
+rkoans list                       # List available exercises
+rkoans start blocks-and-methods   # Select an exercise
+rkoans check                      # Check the selected exercise once
+```
+
+Each exercise has a separate file in `~/ruby-koans/exercises`, such as
+`collection-basics/collection_basics.rb`. Switching exercises preserves your work.
+
+`rkoans check` exits with 0 for success, 1 for failed checks, or 2 for a setup or
+command error. Checks that run longer than 30 seconds are stopped.
+
+## Interactive session
+
+The terminal refreshes after each check. When an exercise passes, Rkoans shows
+`Exercise done ✓`, your progress, and a reference solution you can compare with
+your own code. The exercise stays open so you can experiment.
+
+- `?` shows keyboard help.
+- `h` shows a hint for the unfinished current exercise.
+- `l` lists exercises; `s` returns to the current exercise.
+- `n` followed by Enter advances to the next exercise.
+- `q` followed by Enter quits. Ctrl-C also exits.
+
+Help, hints, and view changes respond immediately. Available keys appear at the
+bottom of each screen. Saving while viewing the list keeps the list open.
+
+Rkoans remembers completed exercises, even if you later experiment with their
+code. Advancing checks your current code again and requires it to pass.
+
+## Licenses
+
+The CLI and original exercises use the MIT license. Adapted Ruby Koans lessons
+use CC BY-NC-SA 3.0; see [third-party notices](THIRD_PARTY_NOTICES.md) for their
+attribution, covered files, and license terms.
 
 ## Development
 
-```sh
-mise exec -- bundle exec rake
-mise exec -- gem build rkoans.gemspec
-```
+From the gem directory:
 
-Additional exercises, reset, check-all, Rails, and Docker will migrate
-in later increments.
+```sh
+bundle exec rake
+gem build rkoans.gemspec
+```

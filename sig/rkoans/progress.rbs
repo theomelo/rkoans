@@ -1,7 +1,8 @@
 module Rkoans
   class Progress
     @path: String
-    def initialize: (directory: String) -> void
+    @catalog: Catalog
+    def initialize: (directory: String, ?catalog: Catalog) -> void
     def completed: -> Array[String]
     def mark_done: (String id) -> Integer?
   end

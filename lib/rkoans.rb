@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-module Rkoans
-  class Error < StandardError; end
-end
+require_relative 'rkoans/error'
 
 require_relative 'rkoans/version'
+require_relative 'rkoans/catalog'
 require_relative 'rkoans/exercise'
 require_relative 'rkoans/selection'
 require_relative 'rkoans/progress'

@@ -11,13 +11,16 @@ Gem::Specification.new do |s|
   s.summary = 'Ruby and Rails challenges'
   s.description = 'Ruby and Rails challenges for learning and practicing'
   s.homepage = 'https://github.com/theomelo/rkoans'
-  s.license = 'MIT'
+  # These licenses cover different files; they are not alternative choices.
+  s.licenses = ['MIT', 'CC-BY-NC-SA-3.0']
   s.required_ruby_version = '>= 4.0.7'
   s.metadata['allowed_push_host'] = 'https://rubygems.org'
   s.metadata['homepage_uri'] = s.homepage
   s.metadata['source_code_uri'] = s.homepage
   s.metadata['changelog_uri'] = "#{s.homepage}/blob/main/CHANGELOG.md"
   s.metadata['rubygems_mfa_required'] = 'true'
+  s.metadata['license_scope'] = 'MIT: CLI and original exercises; CC-BY-NC-SA-3.0: adapted Ruby Koans. ' \
+                                'See THIRD_PARTY_NOTICES.md for covered files and terms.'
 
   s.files = Dir.chdir(__dir__) do
     exercise_files = Dir['exercises/*/brief.md'].flat_map do |brief|
@@ -25,9 +28,9 @@ Gem::Specification.new do |s|
       [brief, "#{folder}/hint.md", "#{folder}/#{File.basename(folder).tr('-', '_')}.rb"]
     end
     (Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'test/exercises/*_test.rb', 'solutions/**/*.rb', '*.md',
-         'LICENSE.txt'] +
+         'LICENSE.txt', 'exercises/catalog.json'] +
       exercise_files).select do |file|
-      File.file?(file)
+      File.file?(file) && !file.start_with?('sig/rubocop/')
     end
   end
   s.bindir = 'exe'

@@ -3,15 +3,16 @@
 module Rkoans
   # Coordinates checks, file watching, keyboard commands, and completion.
   class Session
-    def initialize(directory:, out:, input:)
+    # @param catalog [Catalog] ordered exercises used by this component
+    def initialize(directory:, out:, input:, catalog: Catalog.new)
+      @catalog = catalog
       @directory = directory
-      @out = out
       @input = input
-      @selection = Selection.new(directory: directory)
-      @checker = Checker.new
-      @progress = Progress.new(directory: directory)
-      @view = TerminalView.new(out: out)
       @listing = false
+      @selection = Selection.new(directory: directory, catalog: catalog)
+      @checker = Checker.new
+      @progress = Progress.new(directory: directory, catalog: catalog)
+      @view = TerminalView.new(out: out, catalog: catalog)
     end
 
     # Keeps the current exercise open until the user advances or quits.
@@ -28,7 +29,7 @@ module Rkoans
 
     # @return [Integer]
     def check
-      @exercise = Exercise.new(directory: @directory, id: @selection.read)
+      @exercise = Exercise.new(directory: @directory, id: @selection.read, catalog: @catalog)
       raise Error, 'No exercise found. Run rkoans start first.' unless File.file?(@exercise.solution)
 
       show_checks(watching: false)
@@ -38,7 +39,7 @@ module Rkoans
 
     def activate(id)
       @listing = false
-      @exercise = Exercise.new(directory: @directory, id: id)
+      @exercise = Exercise.new(directory: @directory, id: id, catalog: @catalog)
       @exercise.prepare
       @selection.write(id)
     end
@@ -75,10 +76,11 @@ module Rkoans
         render(result, watching: true, message: 'Finish the current exercise before moving on.')
         return
       end
-      next_id = Exercise::IDS[Exercise::IDS.index(@exercise.id) + 1]
+      ids = @catalog.ids
+      next_id = ids[ids.index(@exercise.id) + 1]
       throw :session_action, next_id if next_id
 
-      message = if @progress.completed.size == Exercise::IDS.size
+      message = if @progress.completed.size == ids.size
                   'All exercises complete. You can keep experimenting or enter q to quit.'
                 else
                   'No next exercise. Other exercises remain; enter l to list them or q to quit.'

@@ -2,17 +2,18 @@
 
 require 'test_helper'
 require 'pty'
-require_relative 'support/command_support'
+require_relative 'support/fixture_support'
 
 class KeyboardSessionTest < Minitest::Test
-  include CommandSupport
+  include FixtureSupport
 
   def test_list_and_show_are_immediate_but_next_and_quit_require_enter
     Dir.mktmpdir do |directory|
-      exercise = Rkoans::Exercise.new(directory: File.join(directory, 'ruby-koans'))
+      catalog = Rkoans::Catalog.new(root: FIXTURE_ROOT)
+      exercise = Rkoans::Exercise.new(directory: File.join(directory, 'ruby-koans'), catalog: catalog)
       exercise.prepare
       File.write(exercise.solution, reference_source)
-      PTY.spawn({ 'HOME' => directory, 'NO_COLOR' => '1' }, *COMMAND) do |output, input, pid|
+      PTY.spawn({ 'HOME' => directory, 'NO_COLOR' => '1' }, *command) do |output, input, pid|
         wait_for(output, 'q:quit')
         input.write('l')
         screen = wait_for(output, 'q:quit')
@@ -42,11 +43,11 @@ class KeyboardSessionTest < Minitest::Test
     sleep 0.2
     selected = File.join(directory, 'ruby-koans/.rkoans/selection')
 
-    assert_equal 'collection-basics', File.read(selected).strip
+    assert_equal 'first-exercise', File.read(selected).strip
     input.write("\n")
     screen = wait_for(output, 'q:quit')
 
-    assert_includes screen, 'blocks_and_methods.rb'
+    assert_includes screen, 'second_exercise.rb'
     input.write('q')
     sleep 0.2
 

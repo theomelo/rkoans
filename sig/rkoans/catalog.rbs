@@ -1,0 +1,11 @@
+module Rkoans
+  class Catalog
+    @root: String
+    @ids: Array[String]
+    attr_reader root: String
+    attr_reader ids: Array[String]
+    def initialize: (?root: String) -> void
+    private
+    def valid_ids?: -> bool
+  end
+end

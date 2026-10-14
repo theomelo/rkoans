@@ -12,13 +12,18 @@ module CommandSupport
 
   private
 
+  # @return [Array<String>] production CLI invocation for exercise-specific tests
+  def command
+    COMMAND
+  end
+
   # Returns packaged reference source for +id+ to arrange a passing learner file.
   # Exercise checks keep their own expected values independent of this source.
   def reference_source(id = 'collection-basics')
     File.read(File.join(ROOT, 'solutions', id, "#{id.tr('-', '_')}.rb"))
   end
 
-  # Returns the first exercise's editable path under the temporary home +directory+.
+  # Returns the collection-basics exercise's editable path under the temporary home +directory+.
   def solution(directory)
     File.join(directory, 'ruby-koans/exercises/collection-basics/collection_basics.rb')
   end
@@ -26,13 +31,13 @@ module CommandSupport
   # Runs a command from another working directory using +directory+ as its home.
   # Returns the combined terminal output and process status.
   def run_command(*command_name, directory:)
-    Open3.capture2e({ 'HOME' => directory }, *COMMAND, *command_name, chdir: File.dirname(directory))
+    Open3.capture2e({ 'HOME' => directory }, *command, *command_name, chdir: File.dirname(directory))
   end
 
   # Yields a live watcher's output stream with keyboard input closed.
   # Interrupts the child on exit and verifies its cancellation status.
   def with_watcher(*message, directory:)
-    Open3.popen2e({ 'HOME' => directory }, *COMMAND, *message, chdir: directory, pgroup: true) do |input, stream, child|
+    Open3.popen2e({ 'HOME' => directory }, *command, *message, chdir: directory, pgroup: true) do |input, stream, child|
       input.close
       begin
         yield stream

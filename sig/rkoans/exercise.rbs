@@ -1,14 +1,14 @@
 module Rkoans
   class Exercise
-    IDS: Array[String]
     @id: String
     @solution: String
     @source: String
+    @root: String
 
     attr_reader solution: String
     attr_reader id: String
 
-    def initialize: (?directory: String, ?id: String) -> void
+    def initialize: (?directory: String, ?id: String, ?catalog: Catalog) -> void
     def prepare: -> Integer?
     def instructions: -> String
     def checks: -> String

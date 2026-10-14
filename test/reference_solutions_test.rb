@@ -6,7 +6,7 @@ require 'tmpdir'
 class ReferenceSolutionsTest < Minitest::Test
   def test_each_reference_passes_its_exercise_checks
     Dir.mktmpdir do |directory|
-      Rkoans::Exercise::IDS.each do |id|
+      Rkoans::Catalog.new.ids.each do |id|
         exercise = Rkoans::Exercise.new(directory: directory, id: id)
         exercise.prepare
         File.write(exercise.solution, File.read(exercise.reference))
