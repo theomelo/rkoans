@@ -1,6 +1,7 @@
 [
   "about-asserts",
   "about-true-and-false",
+  "about-strings",
   "heredoc-layout",
   "collection-basics",
   "blocks-and-methods",
