@@ -1,0 +1,3 @@
+class AboutObjectsAcceptanceTest
+  def test_incorrect_nil_conversion_and_clone_predictions_are_rejected: -> void
+end
