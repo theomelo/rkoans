@@ -17,7 +17,9 @@ module Rkoans
       Saving your exercise file reruns its checks automatically.
     TEXT
 
-    def initialize(out:)
+    # @param catalog [Catalog] ordered exercises used by this component
+    def initialize(out:, catalog: Catalog.new)
+      @catalog = catalog
       @out = out
     end
 
@@ -42,7 +44,7 @@ module Rkoans
     def show_list(exercise:, completed:, passed:)
       clear
       @out.puts "Exercises\n\n"
-      Exercise::IDS.each do |id|
+      @catalog.ids.each do |id|
         marker = id == exercise.id ? '>' : ' '
         state = completed.include?(id) ? 'done' : 'open'
         @out.puts "#{marker} [#{state}] #{id}"
@@ -64,9 +66,9 @@ module Rkoans
     end
 
     def progress_line(count)
-      filled = count * 20 / Exercise::IDS.size
+      filled = count * 20 / @catalog.ids.size
       bar = colorize('#' * filled, 32) + colorize('-' * (20 - filled), 31)
-      "\nProgress: [#{bar}] #{count}/#{Exercise::IDS.size}"
+      "\nProgress: [#{bar}] #{count}/#{@catalog.ids.size}"
     end
 
     def commands(passed, listing:)

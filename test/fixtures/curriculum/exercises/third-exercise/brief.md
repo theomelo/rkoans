@@ -1,0 +1,1 @@
+Set THIRD_EXERCISE_COMPLETE to true.

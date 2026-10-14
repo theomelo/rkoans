@@ -5,16 +5,16 @@ require 'fileutils'
 module Rkoans
   # Locates the packaged exercise and creates its editable learner copy.
   class Exercise
-    IDS = %w[collection-basics blocks-and-methods].freeze
-
     attr_reader :solution, :id
 
     # @param [String] directory
-    def initialize(directory: File.join(Dir.home, 'ruby-koans'), id: IDS.first)
-      raise Error, "Unknown exercise: #{id}; run rkoans list" unless IDS.include?(id)
+    # @param catalog [Catalog] source assets and allowed exercise IDs
+    def initialize(directory: File.join(Dir.home, 'ruby-koans'), catalog: Catalog.new, id: catalog.ids.first)
+      raise Error, "Unknown exercise: #{id}; run rkoans list" unless catalog.ids.include?(id)
 
       @id = id
-      @source = File.expand_path("../../exercises/#{id}", __dir__)
+      @root = catalog.root
+      @source = File.join(@root, "exercises/#{id}")
       @solution = File.join(File.expand_path(directory), 'exercises', id, "#{id.tr('-', '_')}.rb")
     end
 
@@ -36,11 +36,11 @@ module Rkoans
 
     # @return [String]
     def checks
-      File.expand_path("../../test/exercises/#{id.tr('-', '_')}_test.rb", __dir__)
+      File.join(@root, "test/exercises/#{id.tr('-', '_')}_test.rb")
     end
 
     def reference
-      File.expand_path("../../solutions/#{id}/#{File.basename(solution)}", __dir__)
+      File.join(@root, "solutions/#{id}/#{File.basename(solution)}")
     end
 
     def hint

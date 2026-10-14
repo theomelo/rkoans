@@ -6,10 +6,13 @@ module Rkoans
     # @param [IO] out
     # @param [IO] err
     # @param [String] directory
-    def initialize(out: $stdout, err: $stderr, input: $stdin, directory: File.join(Dir.home, 'ruby-koans'))
+    # @param catalog [Catalog] ordered exercises used by this component
+    def initialize(out: $stdout, err: $stderr, input: $stdin, directory: File.join(Dir.home, 'ruby-koans'),
+                   catalog: Catalog.new)
+      @catalog = catalog
       @out = out
       @err = err
-      @session = Session.new(directory: directory, out: out, input: input)
+      @session = Session.new(directory: directory, out: out, input: input, catalog: catalog)
     end
 
     # @param [Array<String>] arguments
@@ -37,7 +40,7 @@ module Rkoans
       when 'check'
         @session.check
       when 'list'
-        @out.puts Exercise::IDS
+        @out.puts @catalog.ids
         0
       when '--help', '-h'
         help

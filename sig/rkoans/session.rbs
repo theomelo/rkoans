@@ -11,7 +11,8 @@ module Rkoans
     @passed: bool
     @listing: bool
 
-    def initialize: (directory: String, out: IO, input: IO) -> void
+    @catalog: Catalog
+    def initialize: (directory: String, out: IO, input: IO, ?catalog: Catalog) -> void
     def start: (String? id) -> Integer
     def check: -> Integer
 

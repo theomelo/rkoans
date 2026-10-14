@@ -7,7 +7,9 @@ require 'tempfile'
 module Rkoans
   # Stores completed exercise IDs independently of the current selection.
   class Progress
-    def initialize(directory:)
+    # @param catalog [Catalog] ordered exercises used by this component
+    def initialize(directory:, catalog: Catalog.new)
+      @catalog = catalog
       @path = File.join(directory, '.rkoans', 'completed.json')
     end
 
@@ -15,7 +17,7 @@ module Rkoans
       ids = JSON.parse(File.read(@path))
       raise Error, "Invalid progress file: #{@path}" unless ids.is_a?(Array) && ids.all?(String)
 
-      ids & Exercise::IDS
+      ids & @catalog.ids
     rescue Errno::ENOENT
       []
     rescue JSON::ParserError

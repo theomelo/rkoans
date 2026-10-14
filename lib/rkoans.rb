@@ -5,6 +5,7 @@ module Rkoans
 end
 
 require_relative 'rkoans/version'
+require_relative 'rkoans/catalog'
 require_relative 'rkoans/exercise'
 require_relative 'rkoans/selection'
 require_relative 'rkoans/progress'

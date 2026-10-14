@@ -4,7 +4,8 @@ module Rkoans
     @out: IO
     @session: Session
 
-    def initialize: (?out: IO, ?err: IO, ?input: IO, ?directory: String) -> void
+    @catalog: Catalog
+    def initialize: (?out: IO, ?err: IO, ?input: IO, ?directory: String, ?catalog: Catalog) -> void
     def run: (Array[String] arguments) -> Integer
 
     private

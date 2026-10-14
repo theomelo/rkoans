@@ -2,7 +2,8 @@ module Rkoans
   class TerminalView
     HELP: String
     @out: IO
-    def initialize: (out: IO) -> void
+    @catalog: Catalog
+    def initialize: (out: IO, ?catalog: Catalog) -> void
     def render: (exercise: Exercise, result: Checker::Result, completed: Array[String], watching: bool,
                  ?message: String?) -> void
     def show_message: (String message, exercise: Exercise, completed: Array[String], passed: bool,

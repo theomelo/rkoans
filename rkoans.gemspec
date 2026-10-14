@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
       [brief, "#{folder}/hint.md", "#{folder}/#{File.basename(folder).tr('-', '_')}.rb"]
     end
     (Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'test/exercises/*_test.rb', 'solutions/**/*.rb', '*.md',
-         'LICENSE.txt'] +
+         'LICENSE.txt', 'exercises/catalog.json'] +
       exercise_files).select do |file|
       File.file?(file)
     end

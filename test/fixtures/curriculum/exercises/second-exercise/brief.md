@@ -1,0 +1,1 @@
+Set SECOND_EXERCISE_COMPLETE to true.
