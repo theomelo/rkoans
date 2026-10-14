@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutObjects
+    type answers = {
+      integer_object: (bool | :fill_me_in),
+      float_object: (bool | :fill_me_in),
+      string_object: (bool | :fill_me_in),
+      nil_object: (bool | :fill_me_in),
+      class_object: (bool | :fill_me_in),
+      integer_string: (String | :fill_me_in),
+      nil_string: (String | :fill_me_in),
+      integer_inspect: (String | :fill_me_in),
+      nil_inspect: (String | :fill_me_in),
+      id_type: (singleton(Integer) | :fill_me_in),
+      distinct_ids: (bool | :fill_me_in),
+      zero_id: (Integer | :fill_me_in),
+      one_id: (Integer | :fill_me_in),
+      two_id: (Integer | :fill_me_in),
+      hundred_id: (Integer | :fill_me_in),
+      clone_unequal: (bool | :fill_me_in),
+      clone_distinct_id: (bool | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutObjectsTest
+  def test_everything_is_an_object: -> void
+  def test_objects_can_be_converted_to_strings: -> void
+  def test_objects_can_be_inspected: -> void
+  def test_every_object_has_an_id: -> void
+  def test_every_object_has_different_id: -> void
+  def test_small_integers_have_fixed_ids: -> void
+  def test_clone_creates_a_different_object: -> void
+end
