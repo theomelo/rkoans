@@ -1,6 +1,7 @@
 [
   "about-asserts",
   "about-true-and-false",
+  "heredoc-layout",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"
