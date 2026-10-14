@@ -47,7 +47,9 @@ class AboutMethodsTest
   def my_method_in_the_same_class: (Integer a, Integer b) -> Integer
   def test_calling_methods_in_same_class: -> void
   def test_calling_methods_in_same_class_with_explicit_receiver: -> void
+  private
   def my_private_method: -> String
+  public
   def test_calling_private_methods_without_receiver: -> void
   def test_calling_private_methods_with_an_explicit_receiver: -> void
   def test_calling_methods_in_other_objects_require_explicit_receiver: -> void
