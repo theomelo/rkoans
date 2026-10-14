@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutNil
+    type answers = {
+      nil_object: (bool | :fill_me_in),
+      missing_method_error: (singleton(NoMethodError) | :fill_me_in),
+      message_fragment: (String | :fill_me_in),
+      nil_predicate: (bool | :fill_me_in),
+      string_value: (String | :fill_me_in),
+      inspected_value: (String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutNilTest
+  def test_nil_is_an_object: -> void
+  def test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil: -> void
+  def test_nil_has_a_few_methods_defined_on_it: -> void
+end
