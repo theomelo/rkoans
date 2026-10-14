@@ -11,6 +11,7 @@
   "about-nil",
   "about-hashes",
   "literals-and-operators",
+  "about-methods",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"
