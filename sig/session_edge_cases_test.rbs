@@ -1,4 +1,4 @@
 class SessionEdgeCasesTest
-  include CommandSupport
+  include FixtureSupport
   def test_finishing_last_exercise_does_not_claim_skipped_exercises_are_complete: -> void
 end

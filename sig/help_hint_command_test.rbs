@@ -1,5 +1,5 @@
 class HelpHintCommandTest
-  include CommandSupport
+  include FixtureSupport
   def test_help_is_always_available_and_hints_are_limited_to_unfinished_current_exercises: -> void
 
   private

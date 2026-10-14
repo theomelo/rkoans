@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
-require_relative 'support/command_support'
+require_relative 'support/fixture_support'
 
 class CommandTest < Minitest::Test
-  include CommandSupport
+  include FixtureSupport
 
   def test_check_reports_failure_then_success_from_another_directory
     Dir.mktmpdir('rkoans learner ') do |directory|
@@ -17,7 +17,7 @@ class CommandTest < Minitest::Test
       output, status = run_command('check', directory: directory)
 
       assert_equal 1, status.exitstatus
-      assert_includes output, '2 runs'
+      assert_includes output, '1 runs'
 
       File.write(solution(directory), reference_source)
       output, status = run_command('check', directory: directory)

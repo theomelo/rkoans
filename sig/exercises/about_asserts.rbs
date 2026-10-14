@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+module Exercises
+  class AboutAsserts
+    type answers = {
+      truth: bool,
+      with_message: bool,
+      expected_value: Integer?,
+      better_expected_value: Integer?,
+      filled_value: Integer?
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutAssertsTest
+  def test_assert_truth: -> void
+  def test_assert_with_message: -> void
+  def test_assert_equality: -> void
+  def test_a_better_way_of_asserting_equality: -> void
+  def test_fill_in_values: -> void
+end

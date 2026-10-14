@@ -1,16 +1,10 @@
 class SessionCommandTest
-  include CommandSupport
+  include FixtureSupport
   def test_completion_is_persisted_and_restart_keeps_current_exercise: -> void
   def test_next_advances_only_after_success_and_stops_at_the_last_exercise: -> void
   def test_next_rechecks_edits_to_a_completed_exercise: -> void
 
-  FIXTURE_ROOT: String
-  FIXTURE_COMMAND: Array[String]
-
   private
-
-  def reference_source: (?String id) -> String
-  def solution: (String directory) -> String
 
   def complete_next: (IO input, IO output, String directory, String id) -> String
 

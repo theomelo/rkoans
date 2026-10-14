@@ -1,5 +1,5 @@
 class KeyboardSessionTest
-  include CommandSupport
+  include FixtureSupport
   def test_list_and_show_are_immediate_but_next_and_quit_require_enter: -> void
 
   private

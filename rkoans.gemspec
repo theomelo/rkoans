@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary = 'Ruby and Rails challenges'
   s.description = 'Ruby and Rails challenges for learning and practicing'
   s.homepage = 'https://github.com/theomelo/rkoans'
-  s.license = 'MIT'
+  s.licenses = ['MIT', 'CC-BY-NC-SA-3.0']
   s.required_ruby_version = '>= 4.0.7'
   s.metadata['allowed_push_host'] = 'https://rubygems.org'
   s.metadata['homepage_uri'] = s.homepage

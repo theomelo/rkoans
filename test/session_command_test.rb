@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_relative 'support/command_support'
+require_relative 'support/fixture_support'
 
 class SessionCommandTest < Minitest::Test
-  include CommandSupport
+  include FixtureSupport
 
   def test_completion_is_persisted_and_restart_keeps_current_exercise
     Dir.mktmpdir do |directory|
@@ -69,21 +69,7 @@ class SessionCommandTest < Minitest::Test
     end
   end
 
-  FIXTURE_ROOT = File.join(ROOT, 'test/fixtures/curriculum')
-  FIXTURE_COMMAND = [RbConfig.ruby, '-I', File.join(ROOT, 'lib'),
-                     File.join(ROOT, 'test/support/fixture_session.rb')].freeze
-
   private
-
-  # Returns the fixed fixture's passing source, independent of the real curriculum.
-  def reference_source(id = 'first-exercise')
-    File.read(File.join(FIXTURE_ROOT, 'solutions', id, "#{id.tr('-', '_')}.rb"))
-  end
-
-  # Returns the first fixture exercise's learner path.
-  def solution(directory)
-    File.join(directory, 'ruby-koans/exercises/first-exercise/first_exercise.rb')
-  end
 
   # Advances to +id+, supplies its reference, and returns the completed screen.
   # Assertions verify that the selected file is shown and its checks actually pass.
@@ -102,7 +88,7 @@ class SessionCommandTest < Minitest::Test
 
   # Runs an interactive command with an isolated home and verifies a clean quit.
   def with_session(directory)
-    Open3.popen2e({ 'HOME' => directory }, *FIXTURE_COMMAND, chdir: directory, pgroup: true) do |input, output, child|
+    Open3.popen2e({ 'HOME' => directory }, *command, chdir: directory, pgroup: true) do |input, output, child|
       yield input, output
       input.puts 'q'
       Timeout.timeout(5) { child.join }

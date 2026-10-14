@@ -51,6 +51,12 @@ bottom of each screen. Saving while viewing the list keeps the list open.
 Rkoans remembers completed exercises, even if you later experiment with their
 code. Advancing checks your current code again and requires it to pass.
 
+## Licenses
+
+The CLI and original exercises use the MIT license. Adapted Ruby Koans lessons
+use CC BY-NC-SA 3.0; see [third-party notices](THIRD_PARTY_NOTICES.md) for their
+attribution, covered files, and license terms.
+
 ## Development
 
 From the gem directory:

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require_relative 'support/command_support'
+require_relative 'support/fixture_support'
 
 class HelpHintCommandTest < Minitest::Test
-  include CommandSupport
+  include FixtureSupport
 
   def test_help_is_always_available_and_hints_are_limited_to_unfinished_current_exercises
     Dir.mktmpdir do |directory|
@@ -15,7 +15,7 @@ class HelpHintCommandTest < Minitest::Test
         input.write('h')
         screen = wait_for(output, '?:help')
 
-        assert_includes screen, 'map returns one result'
+        assert_includes screen, 'Replace false with true'
         input.write('?')
         screen = wait_for(output, '?:help')
 
@@ -43,7 +43,7 @@ class HelpHintCommandTest < Minitest::Test
   private
 
   def with_session(directory)
-    Open3.popen2e({ 'HOME' => directory }, *COMMAND, chdir: directory, pgroup: true) do |input, output, child|
+    Open3.popen2e({ 'HOME' => directory }, *command, chdir: directory, pgroup: true) do |input, output, child|
       yield input, output
       input.puts 'q'
       Timeout.timeout(5) { child.join }

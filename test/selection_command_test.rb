@@ -6,7 +6,7 @@ require_relative 'support/command_support'
 class SelectionCommandTest < Minitest::Test
   include CommandSupport
 
-  def test_second_exercise_is_listed_and_selection_resumes_without_losing_first_edits
+  def test_named_exercises_are_listed_and_selection_resumes_without_losing_edits
     Dir.mktmpdir do |directory|
       output, status = run_command('list', directory: directory)
 
@@ -15,7 +15,7 @@ class SelectionCommandTest < Minitest::Test
       assert_includes output, 'blocks-and-methods'
       refute_path_exists File.join(directory, 'ruby-koans')
 
-      with_watcher(directory:) { |stream| wait_for(stream, 'Watching') }
+      with_watcher('start', 'collection-basics', directory:) { |stream| wait_for(stream, 'Watching') }
       File.write(solution(directory), reference_source)
       with_watcher('start', 'blocks-and-methods', directory:) { |stream| wait_for(stream, 'Watching') }
       path = File.join(directory, 'ruby-koans/exercises/blocks-and-methods/blocks_and_methods.rb')

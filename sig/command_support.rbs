@@ -8,6 +8,7 @@ module CommandSupport
 
   private
 
+  def command: -> Array[String]
   def reference_source: (?String id) -> String
 
   def solution: (String directory) -> String

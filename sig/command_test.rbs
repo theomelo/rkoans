@@ -1,5 +1,5 @@
 class CommandTest
-  include CommandSupport
+  include FixtureSupport
   def test_check_reports_failure_then_success_from_another_directory: -> void
   def test_default_start_watches_atomic_saves_and_preserves_edits_on_restart: -> void
 end
