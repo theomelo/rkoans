@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutHashes
+    type answers = {
+      creating_hashes_one: (singleton(::Hash) | :fill_me_in),
+      creating_hashes_two: (::Hash[untyped, untyped] | :fill_me_in),
+      creating_hashes_three: (::Integer | :fill_me_in),
+      hash_literals_one: (::Integer | :fill_me_in),
+      accessing_hashes_one: (::String | :fill_me_in),
+      accessing_hashes_two: (::String | :fill_me_in),
+      accessing_hashes_three: (nil | :fill_me_in),
+      accessing_hashes_with_fetch_one: (::String | :fill_me_in),
+      accessing_hashes_with_fetch_two: (singleton(::KeyError) | :fill_me_in),
+      changing_hashes_one: (::Hash[::Symbol, ::String] | :fill_me_in),
+      hash_is_unordered_one: (bool | :fill_me_in),
+      hash_keys_one: (::Integer | :fill_me_in),
+      hash_keys_two: (bool | :fill_me_in),
+      hash_keys_three: (bool | :fill_me_in),
+      hash_keys_four: (singleton(::Array) | :fill_me_in),
+      hash_values_one: (::Integer | :fill_me_in),
+      hash_values_two: (bool | :fill_me_in),
+      hash_values_three: (bool | :fill_me_in),
+      hash_values_four: (singleton(::Array) | :fill_me_in),
+      combining_hashes_one: (bool | :fill_me_in),
+      combining_hashes_two: (bool | :fill_me_in),
+      default_value_one: (::Integer | :fill_me_in),
+      default_value_two: (nil | :fill_me_in),
+      default_value_three: (::Integer | :fill_me_in),
+      default_value_four: (::String | :fill_me_in),
+      default_value_is_the_same_object_one: (::Array[::String] | :fill_me_in),
+      default_value_is_the_same_object_two: (::Array[::String] | :fill_me_in),
+      default_value_is_the_same_object_three: (::Array[::String] | :fill_me_in),
+      default_value_is_the_same_object_four: (bool | :fill_me_in),
+      default_value_with_block_one: (::Array[::String] | :fill_me_in),
+      default_value_with_block_two: (::Array[::String] | :fill_me_in),
+      default_value_with_block_three: (::Array[untyped] | :fill_me_in),
+      default_value_attribute_one: (nil | :fill_me_in),
+      default_value_attribute_two: (::String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutHashesTest
+  def test_creating_hashes: -> void
+  def test_hash_literals: -> void
+  def test_accessing_hashes: -> void
+  def test_accessing_hashes_with_fetch: -> void
+  def test_changing_hashes: -> void
+  def test_hash_is_unordered: -> void
+  def test_hash_keys: -> void
+  def test_hash_values: -> void
+  def test_combining_hashes: -> void
+  def test_default_value: -> void
+  def test_default_value_is_the_same_object: -> void
+  def test_default_value_with_block: -> void
+  def test_default_value_attribute: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end

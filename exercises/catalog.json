@@ -9,6 +9,7 @@
   "shared-rows",
   "about-objects",
   "about-nil",
+  "about-hashes",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"
