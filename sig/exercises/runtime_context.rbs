@@ -19,5 +19,5 @@ class RuntimeContextTest
   def teardown: -> void
   def test_runtime_globals: -> void
   def test_runtime_constants: -> void
-  def test_empty_arguments_and_missing_greeting: -> void
+  def test_empty_arguments_and_missing_or_empty_greeting: -> void
 end

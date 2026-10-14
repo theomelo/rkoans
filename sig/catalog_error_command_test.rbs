@@ -1,0 +1,4 @@
+class CatalogErrorCommandTest
+  include CommandSupport
+  def test_invalid_and_missing_catalogs_exit_cleanly: -> void
+end

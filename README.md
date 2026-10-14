@@ -23,7 +23,7 @@ Once the gem is installed, you can run it from any directory.
 
 ```sh
 rkoans list                       # List available exercises
-rkoans start blocks-and-methods    # Select an exercise
+rkoans start blocks-and-methods   # Select an exercise
 rkoans check                      # Check the selected exercise once
 ```
 

@@ -7,8 +7,8 @@ module Rkoans
     def initialize(directory:, out:, input:, catalog: Catalog.new)
       @catalog = catalog
       @directory = directory
-      @out = out
       @input = input
+      @listing = false
       @selection = Selection.new(directory: directory, catalog: catalog)
       @checker = Checker.new
       @progress = Progress.new(directory: directory, catalog: catalog)

@@ -15,7 +15,11 @@ class RuntimeContextTest < Minitest::Test
   # Restores the original arguments and greeting even when an assertion fails.
   def teardown
     ARGV.replace(@arguments)
-    @greeting ? ENV['RKOANS_GREETING'] = @greeting : ENV.delete('RKOANS_GREETING')
+    if @greeting
+      ENV['RKOANS_GREETING'] = @greeting
+    else
+      ENV.delete('RKOANS_GREETING')
+    end
   end
 
   # Reading and later changing the returned arguments must leave ARGV intact.
@@ -40,13 +44,16 @@ class RuntimeContextTest < Minitest::Test
     assert_equal RUBY_VERSION, context[:ruby]
   end
 
-  # Empty arguments and a missing environment key have ordinary Ruby defaults.
-  def test_empty_arguments_and_missing_greeting
+  # Missing and empty environment values differ, while empty arguments stay empty.
+  def test_empty_arguments_and_missing_or_empty_greeting
     ARGV.clear
     ENV.delete('RKOANS_GREETING')
     context = Exercises::RuntimeContext.context
 
     assert_empty context[:arguments]
     assert_nil context[:greeting]
+    ENV['RKOANS_GREETING'] = ''
+
+    assert_equal '', Exercises::RuntimeContext.context[:greeting]
   end
 end

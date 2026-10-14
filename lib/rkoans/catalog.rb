@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require_relative 'error'
 
 module Rkoans
   # Loads the ordered exercise IDs and their packaged asset root.
@@ -11,11 +12,11 @@ module Rkoans
     def initialize(root: File.expand_path('../..', __dir__))
       @root = File.expand_path(root)
       @ids = JSON.parse(File.read(File.join(@root, 'exercises/catalog.json')))
-      raise Error, 'Exercise catalog must contain unique exercise IDs in order.' unless valid_ids?
+      raise Error, 'Invalid exercise catalog: expected unique exercise IDs in order.' unless valid_ids?
 
       @ids.each(&:freeze)
       @ids.freeze
-    rescue JSON::ParserError => e
+    rescue JSON::ParserError, SystemCallError => e
       raise Error, "Invalid exercise catalog: #{e.message}"
     end
 

@@ -6,13 +6,15 @@ module Rkoans
     # @param [IO] out
     # @param [IO] err
     # @param [String] directory
-    # @param catalog [Catalog] ordered exercises used by this component
+    # @param catalog [Catalog, nil] ordered exercises used by this component
     def initialize(out: $stdout, err: $stderr, input: $stdin, directory: File.join(Dir.home, 'ruby-koans'),
-                   catalog: Catalog.new)
+                   catalog: nil)
       @catalog = catalog
       @out = out
       @err = err
-      @session = Session.new(directory: directory, out: out, input: input, catalog: catalog)
+      @directory = directory
+      @input = input
+      @session = nil
     end
 
     # @param [Array<String>] arguments
@@ -33,14 +35,26 @@ module Rkoans
 
     private
 
+    # Loads installation data inside run's setup-error handler, only when needed.
+    # @return [Catalog]
+    def catalog
+      @catalog ||= Catalog.new
+    end
+
+    # Creates the interactive coordinator after the catalog has been validated.
+    # @return [Session]
+    def session
+      @session ||= Session.new(directory: @directory, out: @out, input: @input, catalog: catalog)
+    end
+
     def dispatch(command, id)
       case command
       when 'start'
-        @session.start(id)
+        session.start(id)
       when 'check'
-        @session.check
+        session.check
       when 'list'
-        @out.puts @catalog.ids
+        @out.puts catalog.ids
         0
       when '--help', '-h'
         help

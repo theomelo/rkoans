@@ -8,21 +8,7 @@ require 'rubocop'
 
 class CurriculumCopTest < Minitest::Test
   def test_complete_curriculum_and_missing_asset_diagnostics
-    Dir.mktmpdir do |directory|
-      root = File.expand_path('..', __dir__)
-      FileUtils.cp_r(File.join(root, 'test/fixtures/curriculum/.'), directory)
-      FileUtils.mkdir_p(File.join(directory, 'tools/rubocop'))
-      FileUtils.cp(File.join(root, 'tools/rubocop/curriculum.rb'), File.join(directory, 'tools/rubocop'))
-      File.write(File.join(directory, 'rkoans.gemspec'), "Gem::Specification.new\n")
-      File.write(File.join(directory, '.rubocop.yml'), <<~YAML)
-        require:
-          - ./tools/rubocop/curriculum.rb
-        Rkoans/Curriculum:
-          Enabled: true
-          Include:
-            - rkoans.gemspec
-      YAML
-
+    with_curriculum do |directory|
       assert_empty offenses(directory)
 
       %w[exercises/first-exercise/first_exercise.rb exercises/first-exercise/brief.md
@@ -41,11 +27,25 @@ class CurriculumCopTest < Minitest::Test
     end
   end
 
+  # Several defects must appear together, even though RuboCop uses one source range.
+  def test_reports_multiple_curriculum_defects_together
+    with_curriculum do |directory|
+      FileUtils.mkdir_p(File.join(directory, 'exercises/unregistered'))
+      File.delete(File.join(directory, 'exercises/first-exercise/hint.md'))
+      File.delete(File.join(directory, 'sig/exercises/second_exercise.rbs'))
+
+      assert_equal [
+        'Missing curriculum asset: exercises/first-exercise/hint.md',
+        'Missing curriculum asset: sig/exercises/second_exercise.rbs',
+        'Exercise directory is not registered: unregistered'
+      ], offenses(directory).flat_map(&:lines).map(&:chomp)
+    end
+  end
+
   def test_invalid_catalog_is_reported_as_an_offense
     Dir.mktmpdir do |directory|
       root = File.expand_path('..', __dir__)
-      FileUtils.mkdir_p(File.join(directory, 'tools/rubocop'))
-      FileUtils.cp(File.join(root, 'tools/rubocop/curriculum.rb'), File.join(directory, 'tools/rubocop'))
+      copy_cop(root, directory)
       FileUtils.mkdir_p(File.join(directory, 'exercises'))
       File.write(File.join(directory, 'rkoans.gemspec'), "Gem::Specification.new\n")
       File.write(File.join(directory, '.rubocop.yml'), "require:\n  - ./tools/rubocop/curriculum.rb\n")
@@ -58,6 +58,36 @@ class CurriculumCopTest < Minitest::Test
   end
 
   private
+
+  # Yields a complete fixture curriculum with the custom cop enabled.
+  def with_curriculum
+    Dir.mktmpdir do |directory|
+      root = File.expand_path('..', __dir__)
+      FileUtils.cp_r(File.join(root, 'test/fixtures/curriculum/.'), directory)
+      copy_cop(root, directory)
+      File.write(File.join(directory, 'rkoans.gemspec'), "Gem::Specification.new\n")
+      File.write(File.join(directory, '.rubocop.yml'), <<~YAML)
+        require:
+          - ./tools/rubocop/curriculum.rb
+        Rkoans/Curriculum:
+          Enabled: true
+          Include:
+            - rkoans.gemspec
+      YAML
+
+      yield directory
+    end
+  end
+
+  # Copies the development cop and the shared catalog loader into an isolated gem.
+  def copy_cop(root, directory)
+    FileUtils.mkdir_p(File.join(directory, 'tools/rubocop'))
+    FileUtils.cp(File.join(root, 'tools/rubocop/curriculum.rb'), File.join(directory, 'tools/rubocop'))
+    FileUtils.mkdir_p(File.join(directory, 'lib/rkoans'))
+    %w[catalog.rb error.rb].each do |name|
+      FileUtils.cp(File.join(root, 'lib/rkoans', name), File.join(directory, 'lib/rkoans'))
+    end
+  end
 
   # Runs the real cop against an isolated curriculum and returns its diagnostics.
   def offenses(directory)

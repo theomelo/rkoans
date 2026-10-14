@@ -7,9 +7,8 @@ module RuboCop
         def on_new_investigation: -> void
         def external_dependency_checksum: -> String
         private
-        def check_assets: (String root, Array[String] ids) -> void
-        def check_registration: (String root, Array[String] ids) -> void
-        def valid_ids?: (Object ids) -> bool
+        def missing_assets: (String root, Array[String] ids) -> Array[String]
+        def unregistered_directories: (String root, Array[String] ids) -> Array[String]
         def assets: (String id) -> Array[String]
         def report: (String message) -> void
       end

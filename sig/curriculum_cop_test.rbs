@@ -1,6 +1,9 @@
 class CurriculumCopTest
   def test_complete_curriculum_and_missing_asset_diagnostics: -> void
+  def test_reports_multiple_curriculum_defects_together: -> void
   def test_invalid_catalog_is_reported_as_an_offense: -> void
   private
+  def with_curriculum: { (String directory) -> void } -> void
+  def copy_cop: (String root, String directory) -> void
   def offenses: (String directory) -> Array[String]
 end

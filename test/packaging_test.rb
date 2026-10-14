@@ -29,6 +29,7 @@ class PackagingTest < Minitest::Test
       assert_includes files, 'solutions/collection-basics/collection_basics.rb'
       refute_includes files, 'exercises/collection-basics/notes.rb'
       refute_includes files, 'test/command_test.rb'
+      refute_includes files, 'sig/rubocop/curriculum.rbs'
     end
   end
 end

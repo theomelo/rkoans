@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'json'
+require_relative '../../lib/rkoans/catalog'
 require 'digest'
 
 module RuboCop
@@ -13,55 +13,42 @@ module RuboCop
         # @return [void]
         def on_new_investigation
           root = File.dirname(processed_source.file_path)
-          ids = JSON.parse(File.read(File.join(root, 'exercises/catalog.json')))
-          unless valid_ids?(ids)
-            report('Invalid exercise catalog: expected unique exercise IDs in order.')
-            return
-          end
-
-          check_assets(root, ids)
-          check_registration(root, ids)
-        rescue JSON::ParserError, Errno::ENOENT => e
-          report("Invalid exercise catalog: #{e.message}")
+          ids = ::Rkoans::Catalog.new(root: root).ids
+          messages = missing_assets(root, ids) + unregistered_directories(root, ids)
+          report(messages.join("\n")) unless messages.empty?
+        rescue ::Rkoans::Error => e
+          report(e.message)
         end
 
-        # Invalidates cached lint results when the catalog or asset inventory changes.
+        # Invalidates cached lint results when catalog, assets, or shared validation rules change.
         # @return [String]
         def external_dependency_checksum
           root = File.expand_path('../..', __dir__)
           paths = Dir.glob("#{root}/{exercises,solutions,test/exercises,sig/exercises}/**/*")
           catalog = File.join(root, 'exercises/catalog.json')
-          Digest::SHA256.hexdigest(paths.sort.join("\n") + (File.file?(catalog) ? File.read(catalog) : ''))
+          rules = %w[catalog.rb error.rb].map { |name| File.read(File.join(root, 'lib/rkoans', name)) }.join
+          Digest::SHA256.hexdigest(paths.sort.join("\n") + (File.file?(catalog) ? File.read(catalog) : '') + rules)
         end
 
         private
 
         # @param root [String] gem directory
         # @param ids [Array<String>] registered IDs
-        # @return [void]
-        def check_assets(root, ids)
-          ids.each do |id|
-            assets(id).each do |path|
-              report("Missing curriculum asset: #{path}") unless File.file?(File.join(root, path))
-            end
+        # @return [Array<String>] all missing asset diagnostics in catalog order
+        def missing_assets(root, ids)
+          ids.flat_map { |id| assets(id) }.filter_map do |path|
+            "Missing curriculum asset: #{path}" unless File.file?(File.join(root, path))
           end
         end
 
         # @param root [String] gem directory
         # @param ids [Array<String>] registered IDs
-        # @return [void]
-        def check_registration(root, ids)
+        # @return [Array<String>] unregistered exercise directory diagnostics
+        def unregistered_directories(root, ids)
           directories = Dir.children(File.join(root, 'exercises')).select do |name|
             File.directory?(File.join(root, 'exercises', name))
           end
-          (directories - ids).sort.each { |id| report("Exercise directory is not registered: #{id}") }
-        end
-
-        # @param ids [Object] parsed catalog
-        # @return [Boolean]
-        def valid_ids?(ids)
-          ids.is_a?(Array) && !ids.empty? && ids.uniq == ids &&
-            ids.all? { |id| id.is_a?(String) && id.match?(/\A[a-z]+(?:-[a-z]+)*\z/) }
+          (directories - ids).sort.map { |id| "Exercise directory is not registered: #{id}" }
         end
 
         # @param id [String] registered exercise ID
