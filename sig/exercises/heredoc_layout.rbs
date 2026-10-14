@@ -1,0 +1,11 @@
+module Exercises
+  class HeredocLayout
+    def self.render: (String name) -> String
+    def self.literal: -> String
+  end
+end
+
+class HeredocLayoutTest
+  def test_squiggly_indentation: -> void
+  def test_quoted_heredoc: -> void
+end

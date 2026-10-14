@@ -1,0 +1,3 @@
+class HeredocLayoutAcceptanceTest
+  def test_incorrect_delimiters_are_rejected: -> void
+end
