@@ -1,3 +1,4 @@
 class RegexpCapturesAcceptanceTest
   def test_incorrect_fix_is_rejected: -> void
+  def test_float_identifier_is_rejected: -> void
 end
