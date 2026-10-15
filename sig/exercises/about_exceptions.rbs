@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutExceptions
+    type answers = {
+      exceptions_inherit_from_Exception_one: (singleton(::RuntimeError) | :fill_me_in),
+      exceptions_inherit_from_Exception_two: (singleton(::StandardError) | :fill_me_in),
+      exceptions_inherit_from_Exception_three: (singleton(::Exception) | :fill_me_in),
+      exceptions_inherit_from_Exception_four: (singleton(::Object) | :fill_me_in),
+      rescue_clause_one: (::Symbol | :fill_me_in),
+      rescue_clause_two: (bool | :fill_me_in),
+      rescue_clause_three: (bool | :fill_me_in),
+      rescue_clause_four: (::String | :fill_me_in),
+      raising_a_particular_error_one: (::Symbol | :fill_me_in),
+      raising_a_particular_error_two: (::String | :fill_me_in),
+      ensure_clause_one: (::Symbol | :fill_me_in),
+      asserting_an_error_is_raised_one: (singleton(::AboutExceptionsTest::MySpecialError) | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutExceptionsTest
+  def test_exceptions_inherit_from_Exception: -> void
+  def test_rescue_clause: -> void
+  def test_raising_a_particular_error: -> void
+  def test_ensure_clause: -> void
+  def test_asserting_an_error_is_raised: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+class AboutExceptionsTest::MySpecialError < ::RuntimeError
+
+end
