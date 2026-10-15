@@ -19,6 +19,16 @@ Running `rkoans` again resumes your selected exercise and preserves your edits.
 Once the gem is installed, you can run it from any directory.
 `rkoans start` has the same behavior as `rkoans`.
 
+## Curriculum
+
+Practice Ruby through expression predictions and implementation projects, from
+basic syntax to blocks, object protocols, metaprogramming and standard libraries.
+See the [curriculum guide](CURRICULUM.md) for Ruby Koans scope, Gold topic coverage
+and runtime differences.
+
+Your current selection and saved work survive updates. To try a newly added
+lesson, use `rkoans list` and `rkoans start EXERCISE`.
+
 ## Commands
 
 ```sh
