@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutOpenClasses
+    type answers = {
+      as_defined_dogs_do_bark_one: (::String | :fill_me_in),
+      after_reopening_dogs_can_both_wag_and_bark_one: (::String | :fill_me_in),
+      after_reopening_dogs_can_both_wag_and_bark_two: (::String | :fill_me_in),
+      even_existing_built_in_classes_can_be_reopened_one: (bool | :fill_me_in),
+      even_existing_built_in_classes_can_be_reopened_two: (bool | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutOpenClassesTest
+  def test_as_defined_dogs_do_bark: -> void
+  def test_after_reopening_dogs_can_both_wag_and_bark: -> void
+  def test_even_existing_built_in_classes_can_be_reopened: -> void
+end
+
+class AboutOpenClassesTest::Dog
+  def bark: () -> ::String
+  def wag: () -> ::String
+end
+
+class Integer
+  def answer_to_life_universe_and_everything?: () -> bool
+end
