@@ -1,0 +1,11 @@
+module Exercises
+  class NumberedParameters
+    def self.pair_sums: (Array[[Integer, Integer]] pairs) -> Array[Integer]
+    def self.predictions: -> { explicit_and_numbered: bool, numbered_pair: bool }
+  end
+end
+
+class NumberedParametersTest
+  def test_numbered_pair_input: -> void
+  def test_numbered_syntax: -> void
+end
