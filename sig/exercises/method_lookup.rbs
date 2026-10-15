@@ -1,0 +1,16 @@
+module Exercises
+  class MethodLookup
+    module Wrapper
+      def call: -> String
+    end
+    class Presenter
+      def call: -> String
+    end
+    def self.lookup: -> Array[String]
+  end
+end
+
+class MethodLookupTest
+  def test_prepend_wrapper: -> void
+  def test_ancestor_order: -> void
+end
