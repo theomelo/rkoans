@@ -1,0 +1,5 @@
+class AboutExtraCreditAcceptanceTest
+  def test_incomplete_implementation_is_rejected: -> void
+  private
+  def incomplete_repairs: -> Array[[String, String]]
+end

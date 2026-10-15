@@ -1,0 +1,36 @@
+module Exercises
+  class AboutExtraCredit
+    class Player
+      @name: String
+      @score: Integer
+      attr_reader name: String
+      attr_reader score: Integer
+      def initialize: (String name) -> void
+      def bank: (Integer points) -> Integer
+    end
+    class Game
+      @players: Array[Player]
+      @current: Integer
+      @remaining: Integer?
+      attr_reader players: Array[Player]
+      attr_reader current: Integer
+      def initialize: (Array[String] names) -> void
+      def play_turn: (Array[Array[Integer]] rolls) -> Integer
+      def finished?: -> bool
+      def winner: -> Player?
+      private
+      def turn_points: (Array[Array[Integer]] rolls) -> Integer
+      def validate_roll: (Array[Integer] roll, Integer count) -> void
+      def score_roll: (Array[Integer] roll) -> [Integer, Integer]
+      def advance: (Integer total) -> Integer
+    end
+  end
+end
+
+class AboutExtraCreditTest
+  def test_final_round_starts_at_3000_and_wraps_turn_order: -> void
+  def test_entry_threshold_and_later_banking: -> void
+  def test_bust_discards_the_entire_turn: -> void
+  def test_hot_dice_and_roll_validation: -> void
+  def test_every_other_player_gets_one_final_turn: -> void
+end
