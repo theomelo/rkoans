@@ -1,0 +1,10 @@
+module Exercises
+  class LazyEnumeration
+    def self.first_multiples: (Integer limit) -> Array[Integer]
+  end
+end
+
+class LazyEnumerationTest
+  def test_lazy_limit: -> void
+  def test_empty_limit: -> void
+end

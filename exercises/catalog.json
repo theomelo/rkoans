@@ -26,5 +26,6 @@
   "collection-basics",
   "blocks-and-methods",
   "numbered-parameters",
+  "lazy-enumeration",
   "runtime-context"
 ]
