@@ -16,6 +16,7 @@
   "about-keyword-arguments",
   "about-constants",
   "about-regular-expressions",
+  "regexp-captures",
   "collection-basics",
   "blocks-and-methods",
   "runtime-context"

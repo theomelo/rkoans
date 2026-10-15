@@ -1,0 +1,11 @@
+module Exercises
+  class RegexpCaptures
+    def self.parse: (String text) -> { name: String, id: Integer }?
+    def self.probe: (String text) -> [String?, bool]
+  end
+end
+
+class RegexpCapturesTest
+  def test_whole_string_and_captures: -> void
+  def test_match_without_global_capture_change: -> void
+end
