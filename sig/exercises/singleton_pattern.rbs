@@ -1,0 +1,14 @@
+module Exercises
+  class SingletonPattern
+    class Configuration
+      attr_accessor mode: String
+      def initialize: -> void
+      def self.instance: -> Configuration
+    end
+  end
+end
+
+class SingletonPatternTest
+  def test_singleton_identity: -> void
+  def test_private_constructor: -> void
+end
