@@ -1,0 +1,68 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutMethods
+    type answers = {
+      calling_global_methods_one: (::Integer | :fill_me_in),
+      calling_global_methods_without_parentheses_one: (::Integer | :fill_me_in),
+      sometimes_missing_parentheses_are_ambiguous_one: (::Integer | :fill_me_in),
+      calling_global_methods_with_wrong_number_of_arguments_one: (singleton(::ArgumentError) | :fill_me_in),
+      calling_global_methods_with_wrong_number_of_arguments_two: (::String | :fill_me_in),
+      calling_global_methods_with_wrong_number_of_arguments_three: (singleton(::ArgumentError) | :fill_me_in),
+      calling_global_methods_with_wrong_number_of_arguments_four: (::String | :fill_me_in),
+      calling_with_default_values_one: (::Array[::Integer | ::Symbol] | :fill_me_in),
+      calling_with_default_values_two: (::Array[::Integer] | :fill_me_in),
+      calling_with_variable_arguments_one: (singleton(::Array) | :fill_me_in),
+      calling_with_variable_arguments_two: (::Array[untyped] | :fill_me_in),
+      calling_with_variable_arguments_three: (::Array[::Symbol] | :fill_me_in),
+      calling_with_variable_arguments_four: (::Array[::Symbol] | :fill_me_in),
+      method_with_explicit_return_one: (::Symbol | :fill_me_in),
+      method_without_explicit_return_one: (::Symbol | :fill_me_in),
+      calling_methods_in_same_class_one: (::Integer | :fill_me_in),
+      calling_methods_in_same_class_with_explicit_receiver_one: (::Integer | :fill_me_in),
+      calling_private_methods_without_receiver_one: (::String | :fill_me_in),
+      calling_private_methods_with_an_explicit_receiver_one: (::String | :fill_me_in),
+      calling_methods_in_other_objects_require_explicit_receiver_one: (::String | :fill_me_in),
+      calling_private_methods_in_other_objects_one: (singleton(::NoMethodError) | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutMethodsTest
+  def test_calling_global_methods: -> void
+  def test_calling_global_methods_without_parentheses: -> void
+  def test_sometimes_missing_parentheses_are_ambiguous: -> void
+  def test_calling_global_methods_with_wrong_number_of_arguments: -> void
+  def method_with_defaults: [A, B] (A a, ?B b) -> [A, B | Symbol]
+  def test_calling_with_default_values: -> void
+  def method_with_var_args: [A] (*A args) -> Array[A]
+  def test_calling_with_variable_arguments: -> void
+  def method_with_explicit_return: -> Symbol
+  def test_method_with_explicit_return: -> void
+  def method_without_explicit_return: -> Symbol
+  def test_method_without_explicit_return: -> void
+  def my_method_in_the_same_class: (Integer a, Integer b) -> Integer
+  def test_calling_methods_in_same_class: -> void
+  def test_calling_methods_in_same_class_with_explicit_receiver: -> void
+  private
+  def my_private_method: -> String
+  public
+  def test_calling_private_methods_without_receiver: -> void
+  def test_calling_private_methods_with_an_explicit_receiver: -> void
+  def test_calling_methods_in_other_objects_require_explicit_receiver: -> void
+  def test_calling_private_methods_in_other_objects: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+  def assert_predicted_message: (::Symbol key, ::String message) -> void
+end
+
+class AboutMethodsTest::Dog
+  def name: () -> ::String?
+  def tail: () -> ::String
+end
+
+class Object
+  def my_global_method: (Integer a, Integer b) -> Integer
+end

@@ -1,0 +1,3 @@
+class AboutMethodsAcceptanceTest
+  def test_incorrect_predictions_are_rejected: -> void
+end
