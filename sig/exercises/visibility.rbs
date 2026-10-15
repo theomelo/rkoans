@@ -1,0 +1,18 @@
+module Exercises
+  class Visibility
+    class Wallet
+      def initialize: (Integer balance) -> void
+      def balance: -> Integer
+      private
+      def normalize: (Integer value) -> Integer
+      public
+      def deposit: (Integer value) -> Integer
+      def compare: (Wallet other) -> Integer
+    end
+  end
+end
+
+class VisibilityTest
+  def test_protected_peer_calls: -> void
+  def test_private_normalization: -> void
+end

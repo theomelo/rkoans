@@ -32,5 +32,6 @@
   "method-contracts",
   "keyword-forwarding",
   "about-classes",
+  "visibility",
   "runtime-context"
 ]
