@@ -31,5 +31,6 @@
   "nonlocal-exit",
   "method-contracts",
   "keyword-forwarding",
+  "about-classes",
   "runtime-context"
 ]
