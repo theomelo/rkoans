@@ -1,0 +1,3 @@
+class LiteralsAndOperatorsAcceptanceTest
+  def test_incorrect_fix_is_rejected: -> void
+end

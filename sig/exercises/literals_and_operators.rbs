@@ -1,0 +1,12 @@
+module Exercises
+  class LiteralsAndOperators
+    type predictions = { zero_truthy: bool, integer_division: Integer, float_division: Float, precedence: Integer, not_nil: bool, words: Array[String], range: Array[Integer] }
+    def self.predictions: -> predictions
+    def self.default_for_nil: [A] (A? value) -> (A | String)
+  end
+end
+
+class LiteralsAndOperatorsTest
+  def test_literals_and_precedence: -> void
+  def test_short_circuit_default: -> void
+end
