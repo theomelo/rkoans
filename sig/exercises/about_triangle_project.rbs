@@ -1,0 +1,11 @@
+module Exercises
+  class AboutTriangleProject
+    def self.triangle: (Numeric a, Numeric b, Numeric c) -> Symbol
+  end
+end
+
+class AboutTriangleProjectTest
+  def test_equilateral_triangles_have_equal_sides: -> void
+  def test_isosceles_triangles_have_exactly_two_sides_equal: -> void
+  def test_scalene_triangles_have_no_equal_sides: -> void
+end
