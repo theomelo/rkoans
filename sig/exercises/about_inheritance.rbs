@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutInheritance
+    type answers = {
+      subclasses_have_the_parent_as_an_ancestor_one: (bool | :fill_me_in),
+      all_classes_ultimately_inherit_from_object_one: (bool | :fill_me_in),
+      subclasses_inherit_behavior_from_parent_class_one: (::String | :fill_me_in),
+      subclasses_add_new_behavior_one: (::Symbol | :fill_me_in),
+      subclasses_add_new_behavior_two: (singleton(::NoMethodError) | :fill_me_in),
+      subclasses_can_modify_existing_behavior_one: (::String | :fill_me_in),
+      subclasses_can_modify_existing_behavior_two: (::String | :fill_me_in),
+      subclasses_can_invoke_parent_behavior_via_super_one: (::String | :fill_me_in),
+      super_does_not_work_cross_method_one: (singleton(::NoMethodError) | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutInheritanceTest
+  def test_subclasses_have_the_parent_as_an_ancestor: -> void
+  def test_all_classes_ultimately_inherit_from_object: -> void
+  def test_subclasses_inherit_behavior_from_parent_class: -> void
+  def test_subclasses_add_new_behavior: -> void
+  def test_subclasses_can_modify_existing_behavior: -> void
+  def test_subclasses_can_invoke_parent_behavior_via_super: -> void
+  def test_super_does_not_work_cross_method: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+class AboutInheritanceTest::Dog
+  attr_reader name: ::String?
+  def initialize: (::String name) -> void
+  def bark: () -> ::String
+end
+
+class AboutInheritanceTest::Chihuahua < ::AboutInheritanceTest::Dog
+  def wag: () -> ::Symbol
+  def bark: () -> ::String
+end
+
+class AboutInheritanceTest::BullDog < ::AboutInheritanceTest::Dog
+  def bark: () -> ::String
+end
+
+class AboutInheritanceTest::GreatDane < ::AboutInheritanceTest::Dog
+  def growl: () -> untyped
+end
