@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutPatternMatching
+    type answers = {
+      pattern_may_not_match_one: (singleton(::NoMatchingPatternError) | :fill_me_in),
+      we_can_use_else_one: (::Symbol | :fill_me_in),
+      value_pattern_one: (::Symbol | :fill_me_in),
+      value_pattern_two: (::Symbol | :fill_me_in),
+      value_pattern_three: (::Symbol | :fill_me_in),
+      value_pattern_four: (::Symbol | :fill_me_in),
+      variable_pattern_with_binding_one: (::Integer | :fill_me_in),
+      variable_pattern_with_pin_one: (::Symbol | :fill_me_in),
+      pattern_with_dropping_one: (::Symbol | :fill_me_in),
+      pattern_with_dropping_two: (::Symbol | :fill_me_in),
+      alternative_pattern_one: (::Symbol | :fill_me_in),
+      alternative_pattern_two: (::Symbol | :fill_me_in),
+      alternative_pattern_three: (::Symbol | :fill_me_in),
+      alternative_pattern_four: (::Symbol | :fill_me_in),
+      as_pattern_one: (::String | :fill_me_in),
+      array_pattern_one: (::Array[::String] | :fill_me_in),
+      array_pattern_two: (::Symbol | :fill_me_in),
+      hash_pattern_one: (::Array[::Integer] | :fill_me_in),
+      hash_pattern_two: (::Array[::Integer] | :fill_me_in),
+      hash_pattern_with_sugar_one: (::Array[::Integer] | :fill_me_in),
+      hash_pattern_with_sugar_two: (::Array[::Integer] | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutPatternMatchingTest
+  def test_pattern_may_not_match: -> void
+  def test_we_can_use_else: -> void
+  def value_pattern: (Integer | String variable) -> Symbol
+  def test_value_pattern: -> void
+  def variable_pattern_with_binding: (Integer variable) -> Integer
+  def test_variable_pattern_with_binding: -> void
+  def variable_pattern_with_pin: (Integer variable) -> (Integer | Symbol)
+  def test_variable_pattern_with_pin: -> void
+  def pattern_with_dropping: (Array[untyped] variable) -> Symbol
+  def test_pattern_with_dropping: -> void
+  def alternative_pattern: (Integer | bool | nil variable) -> Symbol
+  def test_alternative_pattern: -> void
+  def as_pattern: -> String
+  def test_as_pattern: -> void
+  def array_pattern: (Deconstructible deconstructible) -> (Array[String] | Symbol)
+  def test_array_pattern: -> void
+  def hash_pattern: (LetterAccountant deconstructible_as_hash) -> (Array[Integer] | Symbol)
+  def test_hash_pattern: -> void
+  def hash_pattern_with_sugar: (LetterAccountant deconstructible_as_hash) -> (Array[Integer] | Symbol)
+  def test_hash_pattern_with_sugar: -> void
+end
+
+class AboutPatternMatchingTest::Deconstructible
+  def initialize: (::String str) -> void
+  def deconstruct: -> Array[String]?
+end
+
+class AboutPatternMatchingTest::LetterAccountant
+  def initialize: (::String str) -> void
+  def deconstruct_keys: (Array[Symbol] keys) -> Hash[Symbol, Integer]
+end
