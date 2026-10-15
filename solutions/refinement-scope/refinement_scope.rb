@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Exercises
-  # Speaker.say normally returns "plain".
+  # Speaker#say normally returns "plain".
   class RefinementScope
     # Example Speaker for refinement scope.
     class Speaker

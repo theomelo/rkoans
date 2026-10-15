@@ -1,0 +1,12 @@
+module Exercises
+  class AboutTriangleProjectTwo
+    class TriangleError < StandardError
+    end
+    def self.triangle: (Numeric a, Numeric b, Numeric c) -> Symbol
+  end
+end
+
+class AboutTriangleProjectTwoTest
+  def test_illegal_triangles_throw_exceptions: -> void
+  def test_valid_triangles_keep_their_classification: -> void
+end

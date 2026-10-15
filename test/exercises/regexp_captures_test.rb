@@ -4,7 +4,10 @@ require ARGV.shift
 class RegexpCapturesTest < Minitest::Test
   # Checks whole string and captures.
   def test_whole_string_and_captures
-    assert_equal({ name: 'ruby', id: 42 }, Exercises::RegexpCaptures.parse('ruby:42'))
+    parsed = Exercises::RegexpCaptures.parse('ruby:42')
+
+    assert_equal({ name: 'ruby', id: 42 }, parsed)
+    assert_instance_of Integer, parsed.fetch(:id)
     assert_nil Exercises::RegexpCaptures.parse("ruby:42\n")
     assert_nil Exercises::RegexpCaptures.parse('ruby:x')
   end
