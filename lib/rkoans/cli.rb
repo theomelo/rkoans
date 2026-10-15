@@ -22,7 +22,7 @@ module Rkoans
     def run(arguments)
       @out.sync = true
       command = arguments.empty? ? 'start' : arguments.first
-      return usage_error if arguments.size > 2 || (arguments.size == 2 && command != 'start')
+      return usage_error if arguments.size > 2 || (arguments.size == 2 && !%w[start setup].include?(command))
 
       dispatch(command, arguments[1])
     rescue Interrupt
@@ -51,6 +51,10 @@ module Rkoans
       case command
       when 'start'
         session.start(id)
+      when 'setup'
+        return usage_error unless id == 'rails'
+
+        RailsRuntime.for_workspace(@directory).setup(out: @out)
       when 'check'
         session.check
       when 'list'
@@ -65,14 +69,14 @@ module Rkoans
 
     # @return [Integer]
     def help
-      @out.puts 'Usage: rkoans [start [EXERCISE]|check|list]'
+      @out.puts 'Usage: rkoans [start [EXERCISE]|check|list|setup rails]'
       @out.puts 'Start watches your exercise for saves. Ctrl-C exits. No command means start.'
       0
     end
 
     # @return [Integer]
     def usage_error
-      @err.puts 'Usage: rkoans [start [EXERCISE]|check|list]'
+      @err.puts 'Usage: rkoans [start [EXERCISE]|check|list|setup rails]'
       2
     end
   end

@@ -10,7 +10,7 @@ end
 desc 'Validate the RBS signatures'
 task :signatures do
   ruby '-rrbs', '-rrbs/cli', '-e',
-       'RBS::CLI.new(stdout: $stdout, stderr: $stderr).run(ARGV)', '--', '-I', 'sig', 'validate'
+       'exit RBS::CLI.new(stdout: $stdout, stderr: $stderr).run(ARGV)', '--', '-I', 'sig', 'validate'
 end
 
 require 'rubocop/rake_task'
@@ -18,3 +18,12 @@ require 'rubocop/rake_task'
 RuboCop::RakeTask.new
 
 task default: %i[test signatures rubocop]
+
+namespace :setup do
+  desc 'Install the isolated Rails runtime used by integration tests'
+  task :rails do
+    require_relative 'lib/rkoans'
+    runtime = Rkoans::RailsRuntime.new(directory: File.expand_path('tmp/rails-runtime', __dir__))
+    abort 'Rails test runtime setup failed.' unless runtime.setup.zero?
+  end
+end

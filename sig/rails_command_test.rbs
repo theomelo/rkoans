@@ -1,0 +1,10 @@
+class RailsCommandTest
+  include RailsSupport
+  include CommandSupport
+  def test_missing_runtime_exits_with_setup_guidance: -> void
+  def test_watch_checks_both_files_and_preserves_edits: -> void
+  private
+  def watch_repair: (String directory, Rkoans::Exercise exercise) -> void
+  def fixture_command: (String directory, *String arguments) -> Array[String]
+  def link_runtime: (String directory) -> void
+end

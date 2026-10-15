@@ -10,7 +10,7 @@ module Rkoans
       @input = input
       @listing = false
       @selection = Selection.new(directory: directory, catalog: catalog)
-      @checker = Checker.new
+      @checker = Checker.new(rails_runtime: RailsRuntime.for_workspace(directory))
       @progress = Progress.new(directory: directory, catalog: catalog)
       @view = TerminalView.new(out: out, catalog: catalog)
     end
@@ -20,10 +20,8 @@ module Rkoans
       selected = id || @selection.read
       loop do
         activate(selected)
-        action = watch
-        return 0 if action == :quit
-
-        selected = action
+        selected = watch
+        return selected if selected.is_a?(Integer)
       end
     end
 
@@ -46,8 +44,9 @@ module Rkoans
 
     def watch
       catch(:session_action) do
-        Watcher.new(@exercise.solution).run(input: @input) do |command|
-          command ? handle_command(command) : show_checks(watching: true)
+        Watcher.new(@exercise.editable_files).run(input: @input) do |command|
+          result = command ? handle_command(command) : show_checks(watching: true)
+          throw :session_action, 2 if result == 2
         end
       end
     end
@@ -59,7 +58,7 @@ module Rkoans
         advance
       when 'q'
         show_message('Stopped. Your edits are preserved.', watching: false)
-        throw :session_action, :quit
+        throw :session_action, 0
       when 'l', 's'
         @listing = command == 'l'
         show_checks(watching: true)

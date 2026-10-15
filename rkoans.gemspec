@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'lib/rkoans/version'
+require_relative 'lib/rkoans/exercise_definition'
 
 Gem::Specification.new do |s|
   s.name = 'rkoans'
@@ -24,11 +25,11 @@ Gem::Specification.new do |s|
 
   s.files = Dir.chdir(__dir__) do
     exercise_files = Dir['exercises/*/brief.md'].flat_map do |brief|
-      folder = File.dirname(brief)
-      [brief, "#{folder}/hint.md", "#{folder}/#{File.basename(folder).tr('-', '_')}.rb"]
+      id = File.basename(File.dirname(brief))
+      Rkoans::ExerciseDefinition.new(root: __dir__, id: id).assets
     end
-    (Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'test/exercises/*_test.rb', 'solutions/**/*.rb', '*.md',
-         'LICENSE.txt', 'exercises/catalog.json'] +
+    (Dir['lib/**/*.rb', 'exe/*', 'sig/**/*.rbs', 'test/exercises/*_test.rb', '*.md',
+         'LICENSE.txt', 'exercises/catalog.json', 'runtime/rails/Gemfile', 'runtime/rails/Gemfile.lock'] +
       exercise_files).select do |file|
       File.file?(file) && !file.start_with?('sig/rubocop/')
     end

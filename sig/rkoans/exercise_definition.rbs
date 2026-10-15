@@ -1,0 +1,27 @@
+module Rkoans
+  class ExerciseDefinition
+    @root: String
+    @id: String
+    @folder: String
+    @runtime: String
+    @files: Array[String]
+    @editable_paths: Array[String]
+    @primary_path: String
+    attr_reader runtime: String
+    attr_reader files: Array[String]
+    attr_reader editable_paths: Array[String]
+    attr_reader primary_path: String
+    def initialize: (root: String, id: String) -> void
+    def starter: (String path) -> String
+    def application?: -> bool
+    def assets: -> Array[String]
+    private
+    def ruby_definition: -> void
+    def load_descriptor: (String path) -> void
+    def validate_editable_paths: -> void
+    def validate_application_assets: -> void
+    def relative_path?: (untyped path) -> bool
+    def validated_paths: (untyped paths) -> Array[String]
+    def validate_asset: (String asset) -> void
+  end
+end

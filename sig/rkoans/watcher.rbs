@@ -1,17 +1,17 @@
 module Rkoans
   class Watcher
-    @path: String
+    @paths: Array[String]
     @interval: Float
     @debounce: Float
-    @previous: String?
+    @previous: Array[String?]
     @changed_at: Float?
 
-    def initialize: (String path, ?interval: Float, ?debounce: Float) -> void
+    def initialize: (String | Array[String] path, ?interval: Float, ?debounce: Float) -> void
     def run: (?input: IO?) { (String?) -> untyped } -> bot
 
     private
 
-    def fingerprint: -> String?
+    def fingerprint: -> Array[String?]
     def changed?: -> bool
     def monotonic_time: -> Float
   end

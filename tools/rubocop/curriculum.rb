@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/rkoans/catalog'
+require_relative '../../lib/rkoans/exercise_definition'
 require 'digest'
 
 module RuboCop
@@ -25,18 +26,23 @@ module RuboCop
         def external_dependency_checksum
           root = File.expand_path('../..', __dir__)
           paths = Dir.glob("#{root}/{exercises,solutions,test/exercises,sig/exercises}/**/*")
-          catalog = File.join(root, 'exercises/catalog.json')
-          rules = %w[catalog.rb error.rb].map { |name| File.read(File.join(root, 'lib/rkoans', name)) }.join
-          Digest::SHA256.hexdigest(paths.sort.join("\n") + (File.file?(catalog) ? File.read(catalog) : '') + rules)
+          contents = validation_sources(root).filter_map { |path| File.read(path) if File.file?(path) }
+          Digest::SHA256.hexdigest((paths.sort + contents).join("\n"))
         end
 
         private
+
+        # @return [Array<String>] definitions whose contents affect asset validation
+        def validation_sources(root)
+          rules = %w[catalog.rb error.rb exercise_definition.rb].map { |name| File.join(root, 'lib/rkoans', name) }
+          rules + [File.join(root, 'exercises/catalog.json')] + Dir.glob("#{root}/exercises/*/exercise.json")
+        end
 
         # @param root [String] gem directory
         # @param ids [Array<String>] registered IDs
         # @return [Array<String>] all missing asset diagnostics in catalog order
         def missing_assets(root, ids)
-          ids.flat_map { |id| assets(id) }.filter_map do |path|
+          ids.flat_map { |id| ::Rkoans::ExerciseDefinition.new(root: root, id: id).assets }.filter_map do |path|
             "Missing curriculum asset: #{path}" unless File.file?(File.join(root, path))
           end
         end
@@ -49,14 +55,6 @@ module RuboCop
             File.directory?(File.join(root, 'exercises', name))
           end
           (directories - ids).sort.map { |id| "Exercise directory is not registered: #{id}" }
-        end
-
-        # @param id [String] registered exercise ID
-        # @return [Array<String>] required paths relative to the gem root
-        def assets(id)
-          name = id.tr('-', '_')
-          %W[exercises/#{id}/#{name}.rb exercises/#{id}/brief.md exercises/#{id}/hint.md
-             test/exercises/#{name}_test.rb sig/exercises/#{name}.rbs solutions/#{id}/#{name}.rb]
         end
 
         # @param message [String] actionable curriculum diagnostic

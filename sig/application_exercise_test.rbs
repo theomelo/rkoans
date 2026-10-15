@@ -1,0 +1,6 @@
+class ApplicationExerciseTest
+  ROOT: String
+  def test_preparation_preserves_edits_and_completes_partial_workspaces: -> void
+  def test_invalid_descriptors_are_rejected: -> void
+  def test_symlinked_destination_is_rejected_without_altering_outside_files: -> void
+end

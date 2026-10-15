@@ -1,3 +1,6 @@
 class WatcherTest
+  def test_multiple_files_and_atomic_replacement: -> void
   def test_save_burst_is_debounced_and_unchanged_contents_do_not_rerun: -> void
+  private
+  def scripted_keyboard: (Array[[Float, String?, (String | :atomic)?]] polls, String directory) { (Float) -> void } -> Object
 end

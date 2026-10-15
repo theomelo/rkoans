@@ -1,0 +1,2 @@
+# Opaque signature asset for the isolated fixture catalog; no global app declarations.
+ROUTE_EXAMPLE_COMPLETE: bool

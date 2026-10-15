@@ -1,0 +1,3 @@
+class ApplicationSessionTest
+  def test_application_displays_all_editable_and_reference_files: -> void
+end

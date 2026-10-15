@@ -1,3 +1,4 @@
 class ReferenceSolutionsTest
+  include RailsSupport
   def test_each_reference_passes_its_exercise_checks: -> void
 end
