@@ -1,0 +1,11 @@
+module Exercises
+  class ExceptionFlow
+    def self.trace: (fail: bool) -> Array[String]
+    def self.reraises: -> bot
+  end
+end
+
+class ExceptionFlowTest
+  def test_ensure_and_else: -> void
+  def test_reraise: -> void
+end
