@@ -1,0 +1,20 @@
+module Exercises
+  class CoreProtocols
+    class Packet
+      include Enumerable[Integer]
+      include Comparable
+      def initialize: (Array[Integer] values) -> void
+      def each: -> Enumerator[Integer, untyped]
+              | { (Integer) -> void } -> untyped
+      def total: -> Integer
+      def <=>: (Packet other) -> Integer
+      def to_s: -> String
+    end
+    def self.protocol: (Packet packet) -> [bool, bool]
+  end
+end
+
+class CoreProtocolsTest
+  def test_enumerable_protocol: -> void
+  def test_comparable_and_conversion: -> void
+end
