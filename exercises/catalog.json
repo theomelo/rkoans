@@ -47,5 +47,6 @@
   "delegation",
   "dynamic-methods",
   "about-to-str",
+  "refinement-scope",
   "runtime-context"
 ]

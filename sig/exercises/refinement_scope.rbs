@@ -1,0 +1,18 @@
+module Exercises
+  class RefinementScope
+    class Speaker
+      def say: -> String
+    end
+    module Voice
+    end
+    module Local
+      def self.call: -> String
+    end
+    def self.outside: -> String
+  end
+end
+
+class RefinementScopeTest
+  def test_lexical_refinement: -> void
+  def test_outside_unchanged: -> void
+end
