@@ -1,0 +1,4 @@
+class VisibilityAcceptanceTest
+  def test_incorrect_fix_is_rejected: -> void
+  def test_protected_normalizer_is_rejected: -> void
+end
