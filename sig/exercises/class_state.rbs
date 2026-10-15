@@ -1,0 +1,19 @@
+module Exercises
+  class ClassState
+    class Parent
+      def self.reset: -> Integer
+      def self.count: -> Integer
+      def self.increment: -> Integer
+      def self.label: -> String
+    end
+    class Child < Parent
+      def self.label: -> String
+    end
+    def self.singleton_owner: -> Class
+  end
+end
+
+class ClassStateTest
+  def test_independent_class_instance_state: -> void
+  def test_class_inheritance_and_singleton: -> void
+end
