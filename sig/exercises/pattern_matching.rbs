@@ -1,0 +1,10 @@
+module Exercises
+  class PatternMatching
+    def self.amount: (Hash[Symbol, untyped] payload, String kind) -> Integer?
+  end
+end
+
+class PatternMatchingTest
+  def test_pinned_kind: -> void
+  def test_pattern_guard: -> void
+end
