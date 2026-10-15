@@ -1,0 +1,13 @@
+module Exercises
+  class DynamicMethods
+    def self.readers: (Array[Symbol] names) -> Class
+    def self.evaluate: (Integer factor) -> Integer
+    def self.instance_value: (Object object, Symbol name) -> untyped
+    def self.class_value: (Class klass) -> Class
+  end
+end
+
+class DynamicMethodsTest
+  def test_defined_reader_closures: -> void
+  def test_eval_binding_and_reflection: -> void
+end
