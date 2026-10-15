@@ -86,4 +86,23 @@ class RailsRuntimeTest < Minitest::Test
       assert_empty Dir.children(outside)
     end
   end
+
+  # Existing nested directory and file links must never redirect installation writes.
+  def test_setup_rejects_nested_cache_symlinks
+    Dir.mktmpdir do |directory|
+      outside = File.join(directory, 'outside')
+      FileUtils.mkdir_p(outside)
+      %w[bundle/ruby config/settings user/cache].each do |relative|
+        cache = File.join(directory, 'runtime')
+        link = File.join(cache, relative)
+        FileUtils.mkdir_p(File.dirname(link))
+        File.symlink(outside, link)
+        runtime = Rkoans::RailsRuntime.new(directory: cache)
+
+        assert_raises(Rkoans::Error) { runtime.setup(out: StringIO.new) }
+        assert_empty Dir.children(outside)
+        File.unlink(link)
+      end
+    end
+  end
 end

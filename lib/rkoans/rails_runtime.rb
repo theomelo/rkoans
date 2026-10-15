@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'fileutils'
+require 'find'
 require 'open3'
 require 'rbconfig'
 
@@ -72,13 +73,22 @@ module Rkoans
 
     # @return [Array<String>] owned ancestors and runtime locations that Bundler may write
     def setup_paths
-      unless @directory == @boundary || @directory.start_with?("#{@boundary}/")
-        raise Error, 'Runtime cache must remain inside its owned directory.'
-      end
+      raise Error, 'Runtime cache must remain inside its owned directory.' unless owned_directory?
 
       parts = @directory.delete_prefix(@boundary).split('/').reject(&:empty?)
       paths = parts.each_with_object([@boundary]) { |part, list| list << File.join(list.last, part) }
-      paths + %w[bundle config user].map { |name| File.join(@directory, name) }
+      locations = %w[bundle config user].map { |name| File.join(@directory, name) }
+      paths + locations.flat_map { |path| existing_paths(path) }
+    end
+
+    # @return [Boolean] whether the configured cache belongs to its selected boundary
+    def owned_directory?
+      @directory == @boundary || @directory.start_with?("#{@boundary}/")
+    end
+
+    # @return [Array<String>] existing descendants without following symbolic links
+    def existing_paths(path)
+      File.exist?(path) ? Find.find(path).to_a : [path]
     end
 
     # Runs this Ruby's Bundler instead of an unrelated bundle executable on PATH.

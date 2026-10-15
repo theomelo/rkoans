@@ -10,6 +10,8 @@ module Rkoans
     def command: (Exercise exercise) -> Array[String]
     def environment: -> Hash[String, String?]
     private
+    def owned_directory?: -> bool
+    def existing_paths: (String path) -> Array[String]
     def setup_paths: -> Array[String]
     def validate_setup_paths: -> void
     def bundler_command: (String operation) -> Array[String]

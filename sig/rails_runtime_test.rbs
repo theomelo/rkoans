@@ -1,4 +1,5 @@
 class RailsRuntimeTest
+  def test_setup_rejects_nested_cache_symlinks: -> void
   def test_setup_rejects_symlinked_runtime_ancestors: -> void
   def test_missing_runtime_returns_setup_error_without_installing: -> void
   def test_setup_requires_the_rails_runtime_name: -> void
