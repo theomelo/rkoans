@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutConstants
+    type answers = {
+      nested_constants_may_also_be_referenced_with_relative_paths_one: (::String | :fill_me_in),
+      top_level_constants_are_referenced_by_double_colons_one: (::String | :fill_me_in),
+      nested_constants_are_referenced_by_their_complete_path_one: (::String | :fill_me_in),
+      nested_constants_are_referenced_by_their_complete_path_two: (::String | :fill_me_in),
+      nested_classes_inherit_constants_from_enclosing_classes_one: (::Integer | :fill_me_in),
+      subclasses_inherit_constants_from_parent_classes_one: (::Integer | :fill_me_in),
+      who_wins_with_both_nested_and_inherited_constants_one: (::Integer | :fill_me_in),
+      who_wins_with_explicit_scoping_on_class_definition_one: (::Integer | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutConstantsTest
+  def test_nested_constants_may_also_be_referenced_with_relative_paths: -> void
+  def test_top_level_constants_are_referenced_by_double_colons: -> void
+  def test_nested_constants_are_referenced_by_their_complete_path: -> void
+  def test_nested_classes_inherit_constants_from_enclosing_classes: -> void
+  def test_subclasses_inherit_constants_from_parent_classes: -> void
+  def test_who_wins_with_both_nested_and_inherited_constants: -> void
+  def test_who_wins_with_explicit_scoping_on_class_definition: -> void
+end
+
+class AboutConstantsTest::Animal
+  def legs_in_animal: () -> ::Integer
+end
+
+class AboutConstantsTest::Animal::NestedAnimal
+  def legs_in_nested_animal: () -> ::Integer
+end
+
+class AboutConstantsTest::Reptile
+  def legs_in_reptile: () -> ::Integer
+end
+
+class AboutConstantsTest::MyAnimals
+
+end
+
+class AboutConstantsTest::MyAnimals::Bird
+  def legs_in_bird: () -> ::Integer
+end
+
+class AboutConstantsTest::MyAnimals::Oyster
+  def legs_in_oyster: () -> ::Integer
+end
