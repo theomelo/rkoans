@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutKeywordArguments
+    type answers = {
+      keyword_arguments_one: (singleton(::Array) | :fill_me_in),
+      keyword_arguments_two: (::Array[::Integer | ::String] | :fill_me_in),
+      keyword_arguments_three: (::Array[::String] | :fill_me_in),
+      keyword_arguments_four: (::Array[::Integer] | :fill_me_in),
+      keyword_arguments_with_wrong_number_of_arguments_one: (singleton(::ArgumentError) | :fill_me_in),
+      keyword_arguments_with_wrong_number_of_arguments_two: (::String | :fill_me_in),
+      mandatory_keyword_arguments_one: (::Array[::String] | :fill_me_in),
+      mandatory_keyword_arguments_two: (::Array[::Integer] | :fill_me_in),
+      mandatory_keyword_arguments_without_mandatory_argument_one: (singleton(::ArgumentError) | :fill_me_in),
+      mandatory_keyword_arguments_without_mandatory_argument_two: (::String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutKeywordArgumentsTest
+  def method_with_keyword_arguments: (?one: Integer | String, ?two: Integer | String) -> [Integer | String, Integer | String]
+  def test_keyword_arguments: -> void
+  def method_with_keyword_arguments_with_mandatory_argument: (untyped one, ?two: Integer, ?three: Integer) -> [untyped, Integer, Integer]
+  def test_keyword_arguments_with_wrong_number_of_arguments: -> void
+  def method_with_mandatory_keyword_arguments: (one: Integer | String, ?two: Integer | String) -> [Integer | String, Integer | String]
+  def test_mandatory_keyword_arguments: -> void
+  def test_mandatory_keyword_arguments_without_mandatory_argument: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+  def assert_predicted_message: (::Symbol key, ::String message) -> void
+end
