@@ -1,0 +1,11 @@
+module Exercises
+  class TimeAndDate
+    def self.utc: (String text) -> String
+    def self.days_between: (String first, String last) -> Integer
+  end
+end
+
+class TimeAndDateTest
+  def test_time_offset: -> void
+  def test_calendar_days: -> void
+end
