@@ -1,0 +1,14 @@
+module Exercises
+  class Delegation
+    class Mailbox[A]
+      def initialize: (Array[A] items) -> void
+      def push: (*A items) -> Array[A]
+      def size: -> Integer
+    end
+  end
+end
+
+class DelegationTest
+  def test_delegation_receiver: -> void
+  def test_live_receiver: -> void
+end

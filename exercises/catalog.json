@@ -44,5 +44,6 @@
   "singleton-pattern",
   "method-lookup",
   "about-message-passing",
+  "delegation",
   "runtime-context"
 ]
