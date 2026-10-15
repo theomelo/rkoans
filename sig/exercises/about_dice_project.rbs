@@ -1,0 +1,16 @@
+module Exercises
+  class AboutDiceProject
+    class DiceSet
+      @random: Random
+      @values: Array[Integer]
+      attr_reader values: Array[Integer]
+      def initialize: (?random: Random) -> void
+      def roll: (Integer count) -> Array[Integer]
+    end
+  end
+end
+
+class AboutDiceProjectTest
+  def test_can_create_and_resize_a_dice_set: -> void
+  def test_rolls_use_the_random_source_and_values_stay_stable: -> void
+end
