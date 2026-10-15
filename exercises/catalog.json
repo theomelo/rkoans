@@ -39,5 +39,6 @@
   "about-modules",
   "core-protocols",
   "about-scope",
+  "constant-scope",
   "runtime-context"
 ]
