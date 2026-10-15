@@ -1,0 +1,31 @@
+module Exercises
+  class AboutProxyObjectProject
+    class Proxy
+      @target: Object
+      @messages: Array[Symbol]
+      attr_reader messages: Array[Symbol]
+      def initialize: (Object target) -> void
+      def method_missing: (Symbol name, *untyped, **untyped) ?{ (*untyped) -> untyped } -> untyped
+      def called?: (Symbol name) -> bool
+      def number_of_times_called: (Symbol name) -> Integer
+      private
+      def respond_to_missing?: (Symbol name, ?bool include_private) -> bool
+    end
+  end
+end
+class AboutProxyObjectProjectTest::Television
+  @channel: Integer?
+  @on: bool?
+  attr_accessor channel: Integer?
+  def power: -> bool
+  def on?: -> bool
+  def broadcast: [A] (String message, ?suffix: String) ?{ (String) -> A } -> (A | String)
+  private
+  def secret: -> Symbol
+end
+
+class AboutProxyObjectProjectTest
+  def test_tv_methods_and_recorded_messages: -> void
+  def test_string_target_and_return_values: -> void
+  def test_keywords_and_blocks_reach_the_target: -> void
+end
