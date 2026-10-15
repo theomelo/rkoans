@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutModules
+    type answers = {
+      cant_instantiate_modules_one: (singleton(::NoMethodError) | :fill_me_in),
+      normal_methods_are_available_in_the_object_one: (::String | :fill_me_in),
+      module_methods_can_affect_instance_variables_in_the_object_one: (::String | :fill_me_in),
+      module_methods_can_affect_instance_variables_in_the_object_two: (::String | :fill_me_in),
+      classes_can_override_module_methods_one: (::Symbol | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutModulesTest
+  def test_cant_instantiate_modules: -> void
+  def test_normal_methods_are_available_in_the_object: -> void
+  def test_module_methods_are_also_available_in_the_object: -> void
+  def test_module_methods_can_affect_instance_variables_in_the_object: -> void
+  def test_classes_can_override_module_methods: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+module AboutModulesTest::Nameable
+  def set_name: (::String new_name) -> ::String
+  def here: () -> ::Symbol
+end
+
+class AboutModulesTest::Dog
+  include ::AboutModulesTest::Nameable
+  attr_reader name: ::String?
+  def initialize: () -> void
+  def bark: () -> ::String
+  def here: () -> ::Symbol
+end
