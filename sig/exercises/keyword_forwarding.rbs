@@ -1,0 +1,12 @@
+module Exercises
+  class KeywordForwarding
+    type payload = String | Hash[Symbol, String]
+    def self.target: (payload, ?suffix: String) ?{ (payload) -> String } -> String
+    def self.forward: (*payload args, **String keywords) ?{ (payload) -> String } -> String
+  end
+end
+
+class KeywordForwardingTest
+  def test_keyword_and_block: -> void
+  def test_positional_hash: -> void
+end
