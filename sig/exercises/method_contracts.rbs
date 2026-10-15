@@ -1,0 +1,11 @@
+module Exercises
+  class MethodContracts
+    def self.format_order: (String name, ?Integer quantity, *Symbol extras, unit: String, **String options) ?{ (String) -> String } -> String
+    def self.parameters: -> Array[[Symbol, Symbol]]
+  end
+end
+
+class MethodContractsTest
+  def test_method_defaults_and_block: -> void
+  def test_parameter_metadata: -> void
+end
