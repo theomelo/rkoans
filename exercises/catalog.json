@@ -27,5 +27,6 @@
   "blocks-and-methods",
   "numbered-parameters",
   "lazy-enumeration",
+  "closure-capture",
   "runtime-context"
 ]
