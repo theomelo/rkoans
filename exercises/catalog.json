@@ -30,5 +30,6 @@
   "closure-capture",
   "nonlocal-exit",
   "method-contracts",
+  "keyword-forwarding",
   "runtime-context"
 ]
