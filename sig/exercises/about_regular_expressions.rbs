@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutRegularExpressions
+    type answers = {
+      a_pattern_is_a_regular_expression_one: (singleton(::Regexp) | :fill_me_in),
+      a_regexp_can_search_a_string_for_matching_content_one: (::String | :fill_me_in),
+      a_failed_match_returns_nil_one: (nil | :fill_me_in),
+      question_mark_means_optional_one: (::String | :fill_me_in),
+      question_mark_means_optional_two: (::String | :fill_me_in),
+      plus_means_one_or_more_one: (::String | :fill_me_in),
+      asterisk_means_zero_or_more_one: (::String | :fill_me_in),
+      asterisk_means_zero_or_more_two: (::String | :fill_me_in),
+      asterisk_means_zero_or_more_three: (::String | :fill_me_in),
+      the_left_most_match_wins_one: (::String | :fill_me_in),
+      character_classes_give_options_for_a_character_one: (::Array[::String] | :fill_me_in),
+      slash_d_is_a_shortcut_for_a_digit_character_class_one: (::String | :fill_me_in),
+      slash_d_is_a_shortcut_for_a_digit_character_class_two: (::String | :fill_me_in),
+      character_classes_can_include_ranges_one: (::String | :fill_me_in),
+      slash_s_is_a_shortcut_for_a_whitespace_character_class_one: (::String | :fill_me_in),
+      slash_w_is_a_shortcut_for_a_word_character_class_one: (::String | :fill_me_in),
+      slash_w_is_a_shortcut_for_a_word_character_class_two: (::String | :fill_me_in),
+      period_is_a_shortcut_for_any_non_newline_character_one: (::String | :fill_me_in),
+      a_character_class_can_be_negated_one: (::String | :fill_me_in),
+      shortcut_character_classes_are_negated_with_capitals_one: (::String | :fill_me_in),
+      shortcut_character_classes_are_negated_with_capitals_two: (::String | :fill_me_in),
+      shortcut_character_classes_are_negated_with_capitals_three: (::String | :fill_me_in),
+      shortcut_character_classes_are_negated_with_capitals_four: (::String | :fill_me_in),
+      slash_a_anchors_to_the_start_of_the_string_one: (::String | :fill_me_in),
+      slash_a_anchors_to_the_start_of_the_string_two: (nil | :fill_me_in),
+      slash_z_anchors_to_the_end_of_the_string_one: (::String | :fill_me_in),
+      slash_z_anchors_to_the_end_of_the_string_two: (nil | :fill_me_in),
+      caret_anchors_to_the_start_of_lines_one: (::String | :fill_me_in),
+      dollar_sign_anchors_to_the_end_of_lines_one: (::String | :fill_me_in),
+      slash_b_anchors_to_a_word_boundary_one: (::String | :fill_me_in),
+      parentheses_group_contents_one: (::String | :fill_me_in),
+      parentheses_also_capture_matched_content_by_number_one: (::String | :fill_me_in),
+      parentheses_also_capture_matched_content_by_number_two: (::String | :fill_me_in),
+      variables_can_also_be_used_to_access_captures_one: (::String | :fill_me_in),
+      variables_can_also_be_used_to_access_captures_two: (::String | :fill_me_in),
+      variables_can_also_be_used_to_access_captures_three: (::String | :fill_me_in),
+      a_vertical_pipe_means_or_one: (::String | :fill_me_in),
+      a_vertical_pipe_means_or_two: (::String | :fill_me_in),
+      a_vertical_pipe_means_or_three: (nil | :fill_me_in),
+      scan_is_like_find_all_one: (::Array[::String] | :fill_me_in),
+      sub_is_like_find_and_replace_one: (::String | :fill_me_in),
+      gsub_is_like_find_and_replace_all_one: (::String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutRegularExpressionsTest
+  def test_a_pattern_is_a_regular_expression: -> void
+  def test_a_regexp_can_search_a_string_for_matching_content: -> void
+  def test_a_failed_match_returns_nil: -> void
+  def test_question_mark_means_optional: -> void
+  def test_plus_means_one_or_more: -> void
+  def test_asterisk_means_zero_or_more: -> void
+  def test_the_left_most_match_wins: -> void
+  def test_character_classes_give_options_for_a_character: -> void
+  def test_slash_d_is_a_shortcut_for_a_digit_character_class: -> void
+  def test_character_classes_can_include_ranges: -> void
+  def test_slash_s_is_a_shortcut_for_a_whitespace_character_class: -> void
+  def test_slash_w_is_a_shortcut_for_a_word_character_class: -> void
+  def test_period_is_a_shortcut_for_any_non_newline_character: -> void
+  def test_a_character_class_can_be_negated: -> void
+  def test_shortcut_character_classes_are_negated_with_capitals: -> void
+  def test_slash_a_anchors_to_the_start_of_the_string: -> void
+  def test_slash_z_anchors_to_the_end_of_the_string: -> void
+  def test_caret_anchors_to_the_start_of_lines: -> void
+  def test_dollar_sign_anchors_to_the_end_of_lines: -> void
+  def test_slash_b_anchors_to_a_word_boundary: -> void
+  def test_parentheses_group_contents: -> void
+  def test_parentheses_also_capture_matched_content_by_number: -> void
+  def test_variables_can_also_be_used_to_access_captures: -> void
+  def test_a_vertical_pipe_means_or: -> void
+  def test_scan_is_like_find_all: -> void
+  def test_sub_is_like_find_and_replace: -> void
+  def test_gsub_is_like_find_and_replace_all: -> void
+end
