@@ -45,5 +45,6 @@
   "method-lookup",
   "about-message-passing",
   "delegation",
+  "dynamic-methods",
   "runtime-context"
 ]
