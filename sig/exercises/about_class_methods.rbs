@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutClassMethods
+    type answers = {
+      objects_are_objects_one: (bool | :fill_me_in),
+      classes_are_classes_one: (bool | :fill_me_in),
+      classes_are_objects_too_one: (bool | :fill_me_in),
+      objects_have_methods_one: (bool | :fill_me_in),
+      classes_have_methods_one: (bool | :fill_me_in),
+      you_can_define_methods_on_individual_objects_one: (::Symbol | :fill_me_in),
+      other_objects_are_not_affected_by_these_singleton_methods_one: (singleton(::NoMethodError) | :fill_me_in),
+      since_classes_are_objects_you_can_define_singleton_methods_on_them_too_one: (::Symbol | :fill_me_in),
+      class_methods_are_independent_of_instance_methods_one: (::Symbol | :fill_me_in),
+      class_methods_are_independent_of_instance_methods_two: (::Symbol | :fill_me_in),
+      classes_and_instances_do_not_share_instance_variables_one: (::String | :fill_me_in),
+      classes_and_instances_do_not_share_instance_variables_two: (nil | :fill_me_in),
+      you_can_define_class_methods_inside_the_class_one: (::Symbol | :fill_me_in),
+      class_statements_return_the_value_of_their_last_expression_one: (::Integer | :fill_me_in),
+      self_while_inside_class_is_class_object_not_instance_one: (bool | :fill_me_in),
+      you_can_use_self_instead_of_an_explicit_reference_to_dog_one: (::Symbol | :fill_me_in),
+      heres_still_another_way_to_write_class_methods_one: (::Symbol | :fill_me_in),
+      heres_an_easy_way_to_call_class_methods_from_instance_methods_one: (::Symbol | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutClassMethodsTest
+  def test_objects_are_objects: -> void
+  def test_classes_are_classes: -> void
+  def test_classes_are_objects_too: -> void
+  def test_objects_have_methods: -> void
+  def test_classes_have_methods: -> void
+  def test_you_can_define_methods_on_individual_objects: -> void
+  def test_other_objects_are_not_affected_by_these_singleton_methods: -> void
+  def test_since_classes_are_objects_you_can_define_singleton_methods_on_them_too: -> void
+  def test_class_methods_are_independent_of_instance_methods: -> void
+  def test_classes_and_instances_do_not_share_instance_variables: -> void
+  def test_you_can_define_class_methods_inside_the_class: -> void
+  def test_class_statements_return_the_value_of_their_last_expression: -> void
+  def test_self_while_inside_class_is_class_object_not_instance: -> void
+  def test_you_can_use_self_instead_of_an_explicit_reference_to_dog: -> void
+  def test_heres_still_another_way_to_write_class_methods: -> void
+  def test_heres_an_easy_way_to_call_class_methods_from_instance_methods: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+class AboutClassMethodsTest::Dog
+  attr_accessor name: ::String?
+  def self.name: () -> ::String?
+  def self.a_class_method: () -> ::Symbol
+  def self.class_method2: () -> ::Symbol
+  def self.another_class_method: () -> ::Symbol
+end
+
+class AboutClassMethodsTest::Dog2
+  def wag: () -> ::Symbol
+  def self.wag: () -> ::Symbol
+end

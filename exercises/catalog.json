@@ -40,5 +40,6 @@
   "core-protocols",
   "about-scope",
   "constant-scope",
+  "about-class-methods",
   "runtime-context"
 ]
