@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutClasses
+    type answers = {
+      instances_of_classes_can_be_created_with_new_one: (singleton(::AboutClassesTest::Dog) | :fill_me_in),
+      instance_variables_can_be_set_by_assigning_to_them_one: (::Array[untyped] | :fill_me_in),
+      instance_variables_can_be_set_by_assigning_to_them_two: (::Array[::Symbol] | :fill_me_in),
+      instance_variables_cannot_be_accessed_outside_the_class_one: (singleton(::NoMethodError) | :fill_me_in),
+      instance_variables_cannot_be_accessed_outside_the_class_two: (singleton(::SyntaxError) | :fill_me_in),
+      you_can_politely_ask_for_instance_variable_values_one: (::String | :fill_me_in),
+      you_can_rip_the_value_out_using_instance_eval_one: (::String | :fill_me_in),
+      you_can_rip_the_value_out_using_instance_eval_two: (::String | :fill_me_in),
+      you_can_create_accessor_methods_to_return_instance_variables_one: (::String | :fill_me_in),
+      attr_reader_will_automatically_define_an_accessor_one: (::String | :fill_me_in),
+      attr_accessor_will_automatically_define_both_read_and_write_accessors_one: (::String | :fill_me_in),
+      initialize_provides_initial_values_for_instance_variables_one: (::String | :fill_me_in),
+      args_to_new_must_match_initialize_one: (singleton(::ArgumentError) | :fill_me_in),
+      different_objects_have_different_instance_variables_one: (bool | :fill_me_in),
+      inside_a_method_self_refers_to_the_containing_object_one: (bool | :fill_me_in),
+      to_s_provides_a_string_version_of_the_object_one: (::String | :fill_me_in),
+      to_s_is_used_in_string_interpolation_one: (::String | :fill_me_in),
+      inspect_provides_a_more_complete_string_version_one: (::String | :fill_me_in),
+      all_objects_support_to_s_and_inspect_one: (::String | :fill_me_in),
+      all_objects_support_to_s_and_inspect_two: (::String | :fill_me_in),
+      all_objects_support_to_s_and_inspect_three: (::String | :fill_me_in),
+      all_objects_support_to_s_and_inspect_four: (::String | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutClassesTest
+  def test_instances_of_classes_can_be_created_with_new: -> void
+  def test_instance_variables_can_be_set_by_assigning_to_them: -> void
+  def test_instance_variables_cannot_be_accessed_outside_the_class: -> void
+  def test_you_can_politely_ask_for_instance_variable_values: -> void
+  def test_you_can_rip_the_value_out_using_instance_eval: -> void
+  def test_you_can_create_accessor_methods_to_return_instance_variables: -> void
+  def test_attr_reader_will_automatically_define_an_accessor: -> void
+  def test_attr_accessor_will_automatically_define_both_read_and_write_accessors: -> void
+  def test_initialize_provides_initial_values_for_instance_variables: -> void
+  def test_args_to_new_must_match_initialize: -> void
+  def test_different_objects_have_different_instance_variables: -> void
+  def test_inside_a_method_self_refers_to_the_containing_object: -> void
+  def test_to_s_provides_a_string_version_of_the_object: -> void
+  def test_to_s_is_used_in_string_interpolation: -> void
+  def test_inspect_provides_a_more_complete_string_version: -> void
+  def test_all_objects_support_to_s_and_inspect: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+class AboutClassesTest::Dog
+
+end
+
+class AboutClassesTest::Dog2
+  def set_name: (::String a_name) -> ::String
+end
+
+class AboutClassesTest::Dog3
+  def set_name: (::String a_name) -> ::String
+  def name: () -> ::String?
+end
+
+class AboutClassesTest::Dog4
+  attr_reader name: ::String?
+  def set_name: (::String a_name) -> ::String
+end
+
+class AboutClassesTest::Dog5
+  attr_accessor name: ::String?
+end
+
+class AboutClassesTest::Dog6
+  attr_reader name: ::String?
+  def initialize: (::String initial_name) -> void
+end
+
+class AboutClassesTest::Dog7
+  attr_reader name: ::String?
+  def initialize: (::String initial_name) -> void
+  def get_self: () -> self
+  def to_s: () -> ::String
+  def inspect: () -> ::String
+end
