@@ -1,0 +1,14 @@
+module Exercises
+  class NonlocalExit
+    def self.lambda_trace: -> Array[String]
+    def self.escaped_proc: -> ^() -> bot
+    def self.find_even: (Array[Array[Integer]] groups) -> Integer?
+    def self.skip_odds: (Array[Integer] values) -> Array[Integer]
+  end
+end
+
+class NonlocalExitTest
+  def test_lambda_return_scope: -> void
+  def test_proc_nonlocal_return: -> void
+  def test_catch_throw_and_next: -> void
+end

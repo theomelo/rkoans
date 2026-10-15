@@ -28,5 +28,6 @@
   "numbered-parameters",
   "lazy-enumeration",
   "closure-capture",
+  "nonlocal-exit",
   "runtime-context"
 ]
