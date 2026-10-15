@@ -1,0 +1,11 @@
+module Exercises
+  class ConstantScope
+    def self.predictions: -> { lexical_label: String, shared_class_count: Integer, new_block_local_visible: bool }
+    def self.counter: -> ^() -> Integer
+  end
+end
+
+class ConstantScopeTest
+  def test_scope_predictions: -> void
+  def test_local_closure_state: -> void
+end
