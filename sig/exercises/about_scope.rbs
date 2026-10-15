@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutScope
+    type answers = {
+      dog_is_not_available_in_the_current_scope_one: (singleton(::NameError) | :fill_me_in),
+      you_can_reference_nested_classes_using_the_scope_operator_one: (::Symbol | :fill_me_in),
+      you_can_reference_nested_classes_using_the_scope_operator_two: (::Symbol | :fill_me_in),
+      you_can_reference_nested_classes_using_the_scope_operator_three: (bool | :fill_me_in),
+      you_can_reference_nested_classes_using_the_scope_operator_four: (bool | :fill_me_in),
+      bare_bones_class_names_assume_the_current_scope_one: (bool | :fill_me_in),
+      nested_string_is_not_the_same_as_the_system_string_one: (bool | :fill_me_in),
+      use_the_prefix_scope_operator_to_force_the_global_scope_one: (bool | :fill_me_in),
+      constants_are_defined_with_an_initial_uppercase_letter_one: (::Float | :fill_me_in),
+      class_names_are_just_constants_one: (bool | :fill_me_in),
+      class_names_are_just_constants_two: (bool | :fill_me_in),
+      constants_can_be_looked_up_explicitly_one: (bool | :fill_me_in),
+      constants_can_be_looked_up_explicitly_two: (bool | :fill_me_in),
+      you_can_get_a_list_of_constants_for_any_class_or_module_one: (::Array[::Symbol] | :fill_me_in),
+      you_can_get_a_list_of_constants_for_any_class_or_module_two: (bool | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutScopeTest
+  def test_dog_is_not_available_in_the_current_scope: -> void
+  def test_you_can_reference_nested_classes_using_the_scope_operator: -> void
+  def test_bare_bones_class_names_assume_the_current_scope: -> void
+  def test_nested_string_is_not_the_same_as_the_system_string: -> void
+  def test_use_the_prefix_scope_operator_to_force_the_global_scope: -> void
+  def test_constants_are_defined_with_an_initial_uppercase_letter: -> void
+  def test_class_names_are_just_constants: -> void
+  def test_constants_can_be_looked_up_explicitly: -> void
+  def test_you_can_get_a_list_of_constants_for_any_class_or_module: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+module AboutScopeTest::Jims
+
+end
+
+class AboutScopeTest::Jims::Dog
+  def identify: () -> ::Symbol
+end
+
+module AboutScopeTest::Joes
+
+end
+
+class AboutScopeTest::Joes::Dog
+  def identify: () -> ::Symbol
+end
+
+class AboutScopeTest::String
+
+end
