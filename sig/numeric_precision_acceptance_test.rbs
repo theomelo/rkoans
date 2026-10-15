@@ -1,0 +1,4 @@
+class NumericPrecisionAcceptanceTest
+  def test_incorrect_fix_is_rejected: -> void
+  def test_integer_complex_product_is_rejected: -> void
+end

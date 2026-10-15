@@ -1,0 +1,11 @@
+module Exercises
+  class NumericPrecision
+    def self.ratios: (Integer a, Integer b) -> { integer: Integer, floating: Float, rational: Rational }
+    def self.imaginary_product: (Integer a, Integer b) -> Complex
+  end
+end
+
+class NumericPrecisionTest
+  def test_numeric_division: -> void
+  def test_complex_product: -> void
+end
