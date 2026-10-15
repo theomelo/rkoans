@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutControlStatements
+    type answers = {
+      if_then_else_statements_one: (::Symbol | :fill_me_in),
+      if_then_statements_one: (::Symbol | :fill_me_in),
+      if_statements_return_values_one: (::Symbol | :fill_me_in),
+      if_statements_return_values_two: (::Symbol | :fill_me_in),
+      if_statements_with_no_else_with_false_condition_return_value_one: (nil | :fill_me_in),
+      condition_operators_one: (::Symbol | :fill_me_in),
+      condition_operators_two: (::Symbol | :fill_me_in),
+      if_statement_modifiers_one: (::Symbol | :fill_me_in),
+      unless_statement_one: (::Symbol | :fill_me_in),
+      unless_statement_evaluate_true_one: (::Symbol | :fill_me_in),
+      unless_statement_modifier_one: (::Symbol | :fill_me_in),
+      while_statement_one: (::Integer | :fill_me_in),
+      break_statement_one: (::Integer | :fill_me_in),
+      break_statement_returns_values_one: (::Integer | :fill_me_in),
+      next_statement_one: (::Array[::Integer] | :fill_me_in),
+      for_statement_one: (::Array[::String] | :fill_me_in),
+      times_statement_one: (::Integer | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutControlStatementsTest
+  def test_if_then_else_statements: -> void
+  def test_if_then_statements: -> void
+  def test_if_statements_return_values: -> void
+  def test_if_statements_with_no_else_with_false_condition_return_value: -> void
+  def test_condition_operators: -> void
+  def test_if_statement_modifiers: -> void
+  def test_unless_statement: -> void
+  def test_unless_statement_evaluate_true: -> void
+  def test_unless_statement_modifier: -> void
+  def test_while_statement: -> void
+  def test_break_statement: -> void
+  def test_break_statement_returns_values: -> void
+  def test_next_statement: -> void
+  def test_for_statement: -> void
+  def test_times_statement: -> void
+end
