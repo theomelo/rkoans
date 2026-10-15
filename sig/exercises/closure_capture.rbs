@@ -1,0 +1,10 @@
+module Exercises
+  class ClosureCapture
+    def self.multipliers: (Array[Integer] numbers) -> Array[^(Integer value) -> Integer]
+  end
+end
+
+class ClosureCaptureTest
+  def test_separate_captures: -> void
+  def test_lambda_contract: -> void
+end
