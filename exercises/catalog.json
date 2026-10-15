@@ -29,5 +29,6 @@
   "lazy-enumeration",
   "closure-capture",
   "nonlocal-exit",
+  "method-contracts",
   "runtime-context"
 ]
