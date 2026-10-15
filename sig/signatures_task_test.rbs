@@ -1,0 +1,3 @@
+class SignaturesTaskTest
+  def test_signature_validation_failure_fails_the_task: -> void
+end

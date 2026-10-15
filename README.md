@@ -43,6 +43,19 @@ Each exercise has a separate file in `~/ruby-koans/exercises`, such as
 `rkoans check` exits with 0 for success, 1 for failed checks, or 2 for a setup or
 command error. Checks that run longer than 30 seconds are stopped.
 
+## Optional Rails runtime
+
+Application exercises use a separate Rails bundle. Install it explicitly with:
+
+```sh
+rkoans setup rails
+```
+
+Setup needs network access the first time and reuses installed dependencies on
+later runs. Ruby exercises do not require Rails. Starting or checking an exercise
+never installs dependencies. Application exercises show every file to edit and
+rerun checks when any of those files changes.
+
 ## Interactive session
 
 The terminal refreshes after each check. When an exercise passes, Rkoans shows
@@ -72,6 +85,7 @@ attribution, covered files, and license terms.
 From the gem directory:
 
 ```sh
+bundle exec rake setup:rails
 bundle exec rake
 gem build rkoans.gemspec
 ```

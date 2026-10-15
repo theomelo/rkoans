@@ -1,5 +1,8 @@
 module Rkoans
   class Exercise
+    @directory: String
+    @workspace: String
+    @definition: ExerciseDefinition
     @id: String
     @solution: String
     @source: String
@@ -7,12 +10,20 @@ module Rkoans
 
     attr_reader solution: String
     attr_reader id: String
+    attr_reader workspace: String
+    attr_reader definition: ExerciseDefinition
 
     def initialize: (?directory: String, ?id: String, ?catalog: Catalog) -> void
-    def prepare: -> Integer?
+    def prepare: -> void
     def instructions: -> String
     def checks: -> String
     def reference: -> String
     def hint: -> String
+    def editable_files: -> Array[String]
+    def reference_files: -> Hash[String, String]
+    def runtime: -> String
+    private
+    def safe_destination: (String relative) -> String
+    def copy_missing: (String source, String target) -> Integer?
   end
 end

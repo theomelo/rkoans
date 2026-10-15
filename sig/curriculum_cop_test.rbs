@@ -1,4 +1,5 @@
 class CurriculumCopTest
+  def test_application_descriptors_are_validated_and_invalidate_the_cache: -> void
   def test_complete_curriculum_and_missing_asset_diagnostics: -> void
   def test_reports_multiple_curriculum_defects_together: -> void
   def test_invalid_catalog_is_reported_as_an_offense: -> void

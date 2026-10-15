@@ -1,0 +1,10 @@
+class RailsApplicationAcceptanceTest
+  include RailsSupport
+  def test_controller_syntax_error_is_visible_and_recoverable: -> void
+  def test_real_rails_starter_reference_and_partial_repairs: -> void
+end
+
+class FixtureRouteExampleTest
+  def test_hello_route: -> void
+  def test_unknown_route: -> void
+end

@@ -18,7 +18,7 @@ module Rkoans
     private
 
     def activate: (String id) -> void
-    def watch: -> (String | :quit)
+    def watch: -> (String | 0 | 2)
     def handle_command: (String command) -> void
     def advance: -> void
     def show_checks: (watching: bool) -> Integer

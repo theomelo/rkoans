@@ -1,0 +1,7 @@
+class RailsRuntimeTest
+  def test_setup_rejects_symlinked_runtime_ancestors: -> void
+  def test_missing_runtime_returns_setup_error_without_installing: -> void
+  def test_setup_requires_the_rails_runtime_name: -> void
+  def test_runtime_environment_is_independent_of_ambient_bundle_configuration: -> void
+  def test_failed_setup_does_not_break_ruby_checks: -> void
+end

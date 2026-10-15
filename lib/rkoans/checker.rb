@@ -11,18 +11,18 @@ module Rkoans
     Result = Data.define(:output, :exit_code)
 
     # @param [Integer | Float] timeout
-    def initialize(timeout: 30)
+    def initialize(timeout: 30, rails_runtime: RailsRuntime.new)
       @timeout = timeout
+      @rails_runtime = rails_runtime
     end
 
     # @param [Rkoans::Exercise] exercise
     # @return [Rkoans::Checker::Result]
     def run(exercise)
+      return Result.new("Rails dependencies are missing. Run rkoans setup rails.\n", 2) if missing_runtime?(exercise)
+
       Tempfile.create('rkoans-check') do |output|
-        pid = Process.spawn(
-          RbConfig.ruby, '-rminitest/autorun', exercise.checks, exercise.solution,
-          in: File::NULL, out: output, err: output, pgroup: true
-        )
+        pid = spawn_check(exercise, output)
         begin
           status = Timeout.timeout(@timeout) { Process.wait2(pid).last }
           output.rewind
@@ -41,6 +41,23 @@ module Rkoans
     end
 
     private
+
+    # @return [Boolean] whether a Rails exercise needs explicit dependency setup
+    def missing_runtime?(exercise)
+      exercise.runtime == 'rails' && !@rails_runtime.ready?
+    end
+
+    # Uses the same timeout/cancellation lifecycle for Ruby and isolated Rails children.
+    # @return [Integer] child process ID
+    def spawn_check(exercise, output)
+      options = { in: File::NULL, out: output, err: output, pgroup: true }
+      if exercise.runtime == 'rails'
+        Process.spawn(@rails_runtime.environment, *@rails_runtime.command(exercise),
+                      **options, chdir: exercise.workspace)
+      else
+        Process.spawn(RbConfig.ruby, '-rminitest/autorun', exercise.checks, exercise.solution, **options)
+      end
+    end
 
     # @param [Integer] pid
     # @return [Integer, nil]

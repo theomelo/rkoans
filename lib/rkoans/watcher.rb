@@ -5,11 +5,11 @@ require 'digest'
 module Rkoans
   # Reruns a block after file contents change and saves settle.
   class Watcher
-    # @param [String] path
+    # @param [String, Array<String>] path
     # @param [Float] interval
     # @param [Float] debounce
     def initialize(path, interval: 0.1, debounce: 0.2)
-      @path = path
+      @paths = Array(path)
       @interval = interval
       @debounce = debounce
     end
@@ -43,11 +43,13 @@ module Rkoans
       false
     end
 
-    # @return [String, nil]
+    # @return [Array<String, nil>]
     def fingerprint
-      Digest::SHA256.file(@path).hexdigest
-    rescue Errno::ENOENT
-      nil
+      @paths.map do |path|
+        Digest::SHA256.file(path).hexdigest
+      rescue Errno::ENOENT
+        nil
+      end
     end
 
     # @return [Float]

@@ -1,0 +1,7 @@
+module RailsSupport
+  RAILS_FIXTURE: String
+  RAILS_CACHE: String
+  private
+  def prepared_runtime: -> Rkoans::RailsRuntime
+  def apply_references: (Rkoans::Exercise exercise) -> void
+end

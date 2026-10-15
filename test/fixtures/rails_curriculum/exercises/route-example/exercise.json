@@ -1,0 +1,14 @@
+{
+  "runtime": "rails",
+  "primary_path": "config/routes.rb",
+  "files": [
+    "config/application.rb",
+    "config/environment.rb",
+    "config/routes.rb",
+    "app/controllers/welcome_controller.rb"
+  ],
+  "editable_paths": [
+    "config/routes.rb",
+    "app/controllers/welcome_controller.rb"
+  ]
+}

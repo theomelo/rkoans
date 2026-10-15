@@ -14,7 +14,7 @@ module Rkoans
       q + Enter  Quit and preserve your edits.
       Ctrl-C     Quit and preserve your edits.
 
-      Saving your exercise file reruns its checks automatically.
+      Saving an exercise file reruns its checks automatically.
     TEXT
 
     # @param catalog [Catalog] ordered exercises used by this component
@@ -25,6 +25,7 @@ module Rkoans
 
     def render(exercise:, result:, completed:, watching:, message: nil)
       clear if watching
+      watching &&= result.exit_code != 2
       @out.puts "Output\n\n"
       if watching && result.exit_code.zero?
         show_completed(exercise)
@@ -79,13 +80,13 @@ module Rkoans
 
     def show_completed(exercise)
       @out.puts colorize('Exercise done ✓', 32)
-      @out.puts "Solution for comparison: #{colorize(exercise.reference, 36)}"
+      @out.puts "Solution for comparison: #{colorize(exercise.reference_files.values.join("\n"), 36)}"
       @out.puts 'When done experimenting, enter n to move on to the next exercise.'
     end
 
     def show_checks(exercise, result)
       @out.puts exercise.instructions
-      @out.puts "\nEdit: #{exercise.solution}\n\n"
+      @out.puts "\nEdit: #{exercise.editable_files.join("\n")}\n\n"
       @out.puts result.output
       @out.puts(result.exit_code.zero? ? colorize('PASS', 32) : colorize('FAIL', 31))
     end

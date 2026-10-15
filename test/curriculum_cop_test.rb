@@ -57,6 +57,24 @@ class CurriculumCopTest < Minitest::Test
     end
   end
 
+  # Editing descriptor contents invalidates cached validation even without renaming assets.
+  def test_application_descriptors_are_validated_and_invalidate_the_cache
+    with_curriculum do |directory|
+      fixture = File.join(__dir__, 'fixtures/rails_curriculum')
+      FileUtils.cp_r(File.join(fixture, '.'), directory)
+      File.write(File.join(directory, 'exercises/catalog.json'),
+                 JSON.generate(%w[first-exercise second-exercise third-exercise route-example]))
+
+      assert_empty offenses(directory)
+      descriptor = File.join(directory, 'exercises/route-example/exercise.json')
+      data = JSON.parse(File.read(descriptor))
+      data['editable_paths'] = ['config/environment.rb']
+      File.write(descriptor, JSON.generate(data))
+
+      assert_match(/Editable and primary paths/, offenses(directory).join)
+    end
+  end
+
   private
 
   # Yields a complete fixture curriculum with the custom cop enabled.
@@ -84,7 +102,7 @@ class CurriculumCopTest < Minitest::Test
     FileUtils.mkdir_p(File.join(directory, 'tools/rubocop'))
     FileUtils.cp(File.join(root, 'tools/rubocop/curriculum.rb'), File.join(directory, 'tools/rubocop'))
     FileUtils.mkdir_p(File.join(directory, 'lib/rkoans'))
-    %w[catalog.rb error.rb].each do |name|
+    %w[catalog.rb error.rb exercise_definition.rb].each do |name|
       FileUtils.cp(File.join(root, 'lib/rkoans', name), File.join(directory, 'lib/rkoans'))
     end
   end

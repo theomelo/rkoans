@@ -1,3 +1,4 @@
 class PackagingTest
+  def test_application_package_only_includes_declared_files: -> void
   def test_package_includes_signatures_and_checks_but_not_learner_edits: -> void
 end

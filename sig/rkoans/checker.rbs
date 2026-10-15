@@ -9,13 +9,16 @@ module Rkoans
     end
 
     MAX_KB: Integer
+    @rails_runtime: RailsRuntime
     @timeout: Integer | Float
 
-    def initialize: (?timeout: Integer | Float) -> void
+    def initialize: (?timeout: Integer | Float, ?rails_runtime: RailsRuntime) -> void
     def run: (Exercise exercise) -> Result
 
     private
 
+    def missing_runtime?: (Exercise exercise) -> bool
+    def spawn_check: (Exercise exercise, IO output) -> Integer
     def stop_group: (pid: Integer) -> Integer?
     def reap_exited_child: (Integer pid) -> Integer?
   end

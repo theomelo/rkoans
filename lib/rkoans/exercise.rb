@@ -5,7 +5,7 @@ require 'fileutils'
 module Rkoans
   # Locates the packaged exercise and creates its editable learner copy.
   class Exercise
-    attr_reader :solution, :id
+    attr_reader :solution, :id, :workspace, :definition
 
     # @param [String] directory
     # @param catalog [Catalog] source assets and allowed exercise IDs
@@ -15,18 +15,38 @@ module Rkoans
       @id = id
       @root = catalog.root
       @source = File.join(@root, "exercises/#{id}")
-      @solution = File.join(File.expand_path(directory), 'exercises', id, "#{id.tr('-', '_')}.rb")
+      @directory = File.expand_path(directory)
+      @workspace = File.join(@directory, 'exercises', id)
+      @definition = ExerciseDefinition.new(root: @root, id: id)
+      @solution = File.join(workspace, definition.primary_path)
     end
 
-    # @return [Integer, nil]
+    # Creates missing workspace files, preserving every existing regular file.
+    # @return [void]
     def prepare
-      FileUtils.mkdir_p(File.dirname(solution))
-      File.open(solution, File::WRONLY | File::CREAT | File::EXCL) do |file|
-        file.write(File.read(File.join(@source, File.basename(solution))))
+      destinations = definition.files.to_h { |path| [path, safe_destination(path)] }
+      destinations.each do |relative, target|
+        FileUtils.mkdir_p(File.dirname(target))
+        copy_missing(File.join(@root, definition.starter(relative)), target)
       end
-    rescue Errno::EEXIST
-      # Starting again preserves the learner's work.
       nil
+    end
+
+    # @return [Array<String>] absolute paths whose saves rerun checks
+    def editable_files
+      definition.editable_paths.map { |path| File.join(workspace, path) }
+    end
+
+    # @return [Hash<String, String>] editable file paths paired with reference paths
+    def reference_files
+      definition.editable_paths.to_h do |path|
+        [File.join(workspace, path), File.join(@root, 'solutions', id, path)]
+      end
+    end
+
+    # @return [String] runtime used to execute this lesson
+    def runtime
+      definition.runtime
     end
 
     # @return [String]
@@ -40,11 +60,34 @@ module Rkoans
     end
 
     def reference
-      File.join(@root, "solutions/#{id}/#{File.basename(solution)}")
+      reference_files.fetch(solution)
     end
 
     def hint
       File.read(File.join(@source, 'hint.md'))
+    end
+
+    private
+
+    # Rejects symlinks at the study root and every destination component before writing.
+    # @return [String] validated destination
+    def safe_destination(relative)
+      path = @directory
+      ([nil] + ['exercises', id] + relative.split('/')).each do |part|
+        path = File.join(path, part) if part
+        raise Error, "Workspace paths cannot be symlinks: #{path}" if File.symlink?(path)
+      end
+      path
+    end
+
+    # Exclusively creates a starter so restarts cannot replace learner edits.
+    # @return [Integer, nil]
+    def copy_missing(source, target)
+      File.open(target, File::WRONLY | File::CREAT | File::EXCL) { |file| file.write(File.read(source)) }
+    rescue Errno::EEXIST
+      raise Error, "Workspace file is not a regular file: #{target}" unless File.file?(target)
+
+      nil
     end
   end
 end
