@@ -1,0 +1,3 @@
+class MethodLookupAcceptanceTest
+  def test_incorrect_fix_is_rejected: -> void
+end
