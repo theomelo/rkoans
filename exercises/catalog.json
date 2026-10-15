@@ -43,5 +43,6 @@
   "about-class-methods",
   "singleton-pattern",
   "method-lookup",
+  "about-message-passing",
   "runtime-context"
 ]
