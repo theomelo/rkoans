@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutIteration
+    type answers = {
+      each_is_a_method_on_arrays_one: (bool | :fill_me_in),
+      iterating_with_each_one: (::Integer | :fill_me_in),
+      each_can_use_curly_brace_blocks_too_one: (::Integer | :fill_me_in),
+      break_works_with_each_style_iterations_one: (::Integer | :fill_me_in),
+      collect_transforms_elements_of_an_array_one: (::Array[::Integer] | :fill_me_in),
+      collect_transforms_elements_of_an_array_two: (::Array[::Integer] | :fill_me_in),
+      select_selects_certain_items_from_an_array_one: (::Array[::Integer] | :fill_me_in),
+      select_selects_certain_items_from_an_array_two: (::Array[::Integer] | :fill_me_in),
+      find_locates_the_first_element_matching_a_criteria_one: (::String | :fill_me_in),
+      inject_will_blow_your_mind_one: (::Integer | :fill_me_in),
+      inject_will_blow_your_mind_two: (::Integer | :fill_me_in),
+      all_iteration_methods_work_on_any_collection_not_just_arrays_one: (::Array[::Integer] | :fill_me_in),
+      all_iteration_methods_work_on_any_collection_not_just_arrays_two: (::Array[::String] | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutIterationTest
+  def test_each_is_a_method_on_arrays: -> void
+  def test_iterating_with_each: -> void
+  def test_each_can_use_curly_brace_blocks_too: -> void
+  def test_break_works_with_each_style_iterations: -> void
+  def test_collect_transforms_elements_of_an_array: -> void
+  def test_select_selects_certain_items_from_an_array: -> void
+  def test_find_locates_the_first_element_matching_a_criteria: -> void
+  def test_inject_will_blow_your_mind: -> void
+  def test_all_iteration_methods_work_on_any_collection_not_just_arrays: -> void
+  def with_example_file: [A] () { (File) -> A } -> A
+end
