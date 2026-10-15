@@ -1,0 +1,4 @@
+class TimeAndDateAcceptanceTest
+  def test_incorrect_fix_is_rejected: -> void
+  def test_rational_day_count_is_rejected: -> void
+end
