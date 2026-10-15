@@ -41,5 +41,6 @@
   "about-scope",
   "constant-scope",
   "about-class-methods",
+  "singleton-pattern",
   "runtime-context"
 ]
