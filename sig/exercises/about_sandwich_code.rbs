@@ -1,0 +1,17 @@
+module Exercises
+  class AboutSandwichCode
+    def self.count_lines: (String path) -> Integer
+    def self.find_line: (String path) -> String?
+    def self.file_sandwich: [A] (String path) { (File) -> A } -> A
+    def self.count_lines2: (String path) -> Integer
+    def self.find_line2: (String path) -> String?
+    def self.count_lines3: (String path) -> Integer
+  end
+end
+
+class AboutSandwichCodeTest
+  def test_file_sandwich_closes_on_early_exit: -> void
+  def test_counting_and_finding_lines: -> void
+  def test_empty_and_unterminated_files: -> void
+  def test_file_sandwich_closes_on_success_and_exception: -> void
+end
