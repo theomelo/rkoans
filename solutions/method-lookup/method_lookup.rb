@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Exercises
-  # Presenter.call returns "base".
+  # Presenter#call returns "base".
   class MethodLookup
     # Example Wrapper for method lookup.
     module Wrapper
