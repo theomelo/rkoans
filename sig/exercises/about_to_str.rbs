@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-3.0
+# Adapted from Ruby Koans by Jim Weirich and Joe O'Brien.
+# See THIRD_PARTY_NOTICES.md for attribution and license terms.
+
+module Exercises
+  class AboutToStr
+    type answers = {
+      to_s_returns_a_string_representation_one: (::String | :fill_me_in),
+      normally_objects_cannot_be_used_where_strings_are_expected_one: (singleton(::TypeError) | :fill_me_in),
+      to_str_also_returns_a_string_representation_one: (::String | :fill_me_in),
+      to_str_allows_objects_to_be_treated_as_strings_one: (bool | :fill_me_in),
+      user_defined_code_can_check_for_to_str_one: (bool | :fill_me_in),
+      user_defined_code_can_check_for_to_str_two: (bool | :fill_me_in)
+    }
+    def self.koans: -> answers
+  end
+end
+
+class AboutToStrTest
+  def test_to_s_returns_a_string_representation: -> void
+  def test_normally_objects_cannot_be_used_where_strings_are_expected: -> void
+  def test_to_str_also_returns_a_string_representation: -> void
+  def test_to_str_allows_objects_to_be_treated_as_strings: -> void
+  def acts_like_a_string?: (Object string) -> bool
+  def test_user_defined_code_can_check_for_to_str: -> void
+  def assert_predicted_error: (::Symbol key, singleton(::Exception) klass) { () -> untyped } -> ::Exception
+end
+
+class AboutToStrTest::CanNotBeTreatedAsString
+  def to_s: () -> ::String
+end
+
+class AboutToStrTest::CanBeTreatedAsString
+  def to_s: () -> ::String
+  def to_str: () -> untyped
+end
